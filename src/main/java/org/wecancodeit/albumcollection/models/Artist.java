@@ -7,7 +7,6 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Artist {
@@ -18,38 +17,59 @@ public class Artist {
 	
 	private String name;
 	
-	@ManyToMany(mappedBy="artists")
-	private Collection<Post> posts;
+	private String imgUrl;
+	
+	private int age;
+		
+	private Collection<Album> albums;
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Collection<Post> getPosts() {
-		return posts;
+	public int getAge() {
+		return age;
+	}
+
+	public Collection<Album> getAlbums() {
+		return albums;
+	}
+
+	public Collection<Song> getSongs() {
+		return songs;
 	}
 
 	public Artist() {}
 	
-	public Artist(String name) {
+	public Artist(String name, String imgUrl, int age, Album...albums) {
 		this.name = name;
+		this.imgUrl = imgUrl;
+		this.age = age;
+		this.albums = Arrays.asList(albums);
+	}
+
+	public void addAlbumToArtist(Album album) {
+		albums.add(album);
 	}
 	
-	public Artist(String name, Post ...posts) {
-		this.name = name;
-		this.posts = Arrays.asList(posts);
+	public boolean checkAlbumInArtist(Album album) {
+		return albums.contains(album);
 	}
 	
-	public void addPostToAuthor(Post post) {
-		posts.add(post);
+	public void addSongToArtist(Song song) {
+		songs.add(song);
 	}
 	
-	public boolean checkPostsInAuthor(Post post) {
-		return posts.contains(post);
+	public boolean checkSongInArtist(Song song) {
+		return songs.contains(song);
 	}
 	
 }

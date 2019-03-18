@@ -6,7 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.wecancodeit.albumcollection.models.Artist;
 import org.wecancodeit.albumcollection.repositories.ArtistRepository;
-import org.wecancodeit.blogmastery.models.Post;
 
 @Service
 public class Populator implements CommandLineRunner {

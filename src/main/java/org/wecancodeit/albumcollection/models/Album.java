@@ -1,5 +1,6 @@
 package org.wecancodeit.albumcollection.models;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -9,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import org.assertj.core.util.Arrays;
 
 @Entity
 public class Album {
@@ -39,14 +38,19 @@ public class Album {
 	@OneToMany(mappedBy = "entity")
 	private Collection<Comment> comments;
 
-	@ManyToMany
-	@JoinTable(name = "album_tag", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
-			@JoinColumn(name = "tag") })
+	@ManyToMany(mappedBy = "entities")
 	private Collection<Tag> tags;
 
 	public Album() {
 	}
 
+	public Album(String title, String image, String recordLabel) {
+		super();
+		this.title = title;
+		this.image = image;
+		this.recordLabel = recordLabel;
+	}
+	
 	public Album(String title, String image, String recordLabel, Song song, Artist artist, Rating rating,
 			Comment comment, Tag tag) {
 		super();
@@ -58,7 +62,6 @@ public class Album {
 		this.ratings = Arrays.asList(rating);
 		this.comments = Arrays.asList(comment);
 		this.tags = Arrays.asList(tag);
-
 	}
 
 	public Long getId() {

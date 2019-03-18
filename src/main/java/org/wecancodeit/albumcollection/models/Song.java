@@ -10,9 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import org.wecancodeit.blogmastery.models.Author;
-import org.wecancodeit.blogmastery.models.Tag;
-
 @Entity
 public class Song {
 
@@ -39,14 +36,18 @@ public class Song {
 	@OneToMany(mappedBy = "entity")
 	private Collection<Comment> comments;
 
-	@ManyToMany
-	@JoinTable(name = "song_tag", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-			@JoinColumn(name = "tag") })
+	@ManyToMany(mappedBy = "entities")
 	private Collection<Tag> tags;
 
 	public Song() {
 	};
 
+	public Song(String title, String link, String duration) {
+		this.title = title;
+		this.link = link;
+		this.duration = duration;
+	}
+	
 	public Song(String title, String link, String duration, Artist artist, Album album, Rating rating, Comment comment,
 			Tag tag) {
 		this.title = title;

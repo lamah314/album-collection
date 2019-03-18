@@ -36,7 +36,7 @@ public class Artist {
 	@OneToMany(mappedBy = "entity")
 	private Collection<Comment> comments;
 
-	@ManyToMany(mappedBy = "artists")
+	@ManyToMany(mappedBy = "entities")
 	private Collection<Tag> tags;
 
 	public Long getId() {
@@ -78,11 +78,21 @@ public class Artist {
 	public Artist() {
 	}
 
-	public Artist(String name, String imgUrl, int age, Album... albums) {
+	public Artist(String name, String imgUrl, int age) {
 		this.name = name;
 		this.imgUrl = imgUrl;
 		this.age = age;
-		this.albums = Arrays.asList(albums);
+	}
+	
+	public Artist(String name, String imgUrl, int age, Album album, Song song, Rating rating, Comment comment, Tag tag) {
+		this.name = name;
+		this.imgUrl = imgUrl;
+		this.age = age;
+		this.albums = Arrays.asList(album);
+		this.songs = Arrays.asList(song);
+		this.ratings = Arrays.asList(rating);
+		this.comments = Arrays.asList(comment);
+		this.tags = Arrays.asList(tag);
 	}
 
 	public void addAlbumToArtist(Album album) {

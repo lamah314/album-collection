@@ -20,6 +20,10 @@ public class Comment {
 	
 	
 	public Comment() {}
+
+	public Comment(String commentContent) {
+		this.commentContent = commentContent;
+	}
 	
 	public Comment(String commentContent, Object entity) {
 		this.commentContent = commentContent;

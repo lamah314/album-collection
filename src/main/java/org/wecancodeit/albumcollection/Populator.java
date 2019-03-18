@@ -31,9 +31,9 @@ public class Populator implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Album album1 = albumRepo.save(new Album("Circle", "Square", ) )
 		
-		
-		Artist artist1 = artistRepo.save(new Artist("Anthony"));
+		Artist artist1 = artistRepo.save(new Artist("Anthony","MyFace.jpg"));
 		
 		
 	}

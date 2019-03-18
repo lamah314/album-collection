@@ -22,8 +22,6 @@ public class Artist {
 
 	private String imgUrl;
 
-	private int age;
-
 	@ManyToMany(mappedBy = "artists")
 	private Collection<Album> albums;
 
@@ -51,10 +49,6 @@ public class Artist {
 		return name;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
 	public Collection<Album> getAlbums() {
 		return albums;
 	}
@@ -78,16 +72,14 @@ public class Artist {
 	public Artist() {
 	}
 
-	public Artist(String name, String imgUrl, int age) {
+	public Artist(String name, String imgUrl) {
 		this.name = name;
 		this.imgUrl = imgUrl;
-		this.age = age;
 	}
 	
-	public Artist(String name, String imgUrl, int age, Album album, Song song, Rating rating, Comment comment, Tag tag) {
+	public Artist(String name, String imgUrl, Album album, Song song, Rating rating, Comment comment, Tag tag) {
 		this.name = name;
 		this.imgUrl = imgUrl;
-		this.age = age;
 		this.albums = Arrays.asList(album);
 		this.songs = Arrays.asList(song);
 		this.ratings = Arrays.asList(rating);
@@ -105,7 +97,7 @@ public class Artist {
 
 	@Override
 	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl + ", age=" + age + ", albums=" + albums
+		return "Artist [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl + ", albums=" + albums
 				+ ", songs=" + songs + "]";
 	}
 

@@ -71,5 +71,10 @@ public class Artist {
 	public boolean checkSongInArtist(Song song) {
 		return songs.contains(song);
 	}
+
+	@Override
+	public String toString() {
+		return "Artist [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl + ", age=" + age + "]";
+	}
 	
 }

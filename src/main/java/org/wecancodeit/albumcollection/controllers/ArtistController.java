@@ -14,6 +14,10 @@ public class ArtistController {
 	
 	@Resource
 	ArtistRepository artistRepo;
+	@Resource
+	AlbumRepository albumRepo;
+	@Resource
+	SongRepository songRepo;
 	
 	@GetMapping("/")
 	public String getArtistHome() {

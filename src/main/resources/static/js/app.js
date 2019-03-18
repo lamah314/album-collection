@@ -7,7 +7,7 @@ fetch('/artists')
     .then(jsonData => {
         
         const content = '<ul>'
-        jasonData.forEach(artist => {
+        jasonData.forEach((artist) => {
             content += ' <li>${artist.name} : ${artist.description}</li>'
         })
         content += '</ul>'

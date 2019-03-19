@@ -19,10 +19,8 @@ public class Tag {
 
 	private String tag;
 
-	@ManyToMany
-	@JoinTable(name = "tag_inputObject", joinColumns = { @JoinColumn(name = "tag") }, inverseJoinColumns = {
-			@JoinColumn(name = "inputObject") })
-	private Collection<InputObject> inputObjects;
+	@ManyToMany(mappedBy= "tags")
+	private Collection<Album> albums;
 
 	public Tag() {
 	}
@@ -30,24 +28,31 @@ public class Tag {
 	public Tag(String tag) {
 		this.tag = tag;
 	}
-	
-	public Tag(String tag, InputObject...inputObjects) {
+
+	public Tag(String tag, Album... albums) {
 		this.tag = tag;
-		this.inputObjects = Arrays.asList(inputObjects);
+		this.albums = Arrays.asList(albums);
 	}
 
 	public String getTag() {
 		return tag;
 	}
 
-	public Collection<InputObject> getInputObject() {
-		return inputObjects;
+	public Collection<Album> getAlbums() {
+		return albums;
+	}
+
+	public void addAlbumtoTag(Album album) {
+		albums.add(album);
+	}
+
+	public boolean checkAlbumInTag(Album album) {
+		return albums.contains(album);
 	}
 
 	@Override
 	public String toString() {
-		return "Tag [id=" + id + ", tag=" + tag + ", inputObjects=" + inputObjects + "]";
+		return "Tag [id=" + id + ", tag=" + tag + ", albums=" + albums + "]";
 	}
-
 
 }

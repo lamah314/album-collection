@@ -16,7 +16,7 @@ public class Comment {
 
 	
 	@ManyToOne	
-	InputObject inputObject;
+	Album album;
 	
 	
 	public Comment() {}
@@ -25,9 +25,9 @@ public class Comment {
 		this.commentContent = commentContent;
 	}
 	
-	public Comment(String commentContent, InputObject inputObject) {
+	public Comment(String commentContent, Album album) {
 		this.commentContent = commentContent;
-		this.inputObject = inputObject;
+		this.album = album;
 
 	}
 

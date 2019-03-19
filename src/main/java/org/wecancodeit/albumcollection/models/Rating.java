@@ -15,7 +15,7 @@ public class Rating {
 	private int rating;
 
 	@ManyToOne	
-	InputObject inputObject;
+	Album album;
 
 	public Rating() {
 	}
@@ -24,22 +24,22 @@ public class Rating {
 		this.rating = rating;
 	}
 	
-	public Rating(int rating, InputObject inputObject) {
+	public Rating(int rating, Album album) {
 		this.rating = rating;
-		this.inputObject = inputObject;
+		this.album = album;
 	}
 
 	public int getRating() {
 		return rating;
 	}
 
-	public Object getInputObject() {
-		return inputObject;
+	public Object getAlbum() {
+		return album;
 	}
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", rating=" + rating + ", inputObject=" + inputObject + "]";
+		return "Rating [id=" + id + ", rating=" + rating + ", album=" + album + "]";
 	}
 
 

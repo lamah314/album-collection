@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Artist extends InputObject{
+public class Artist{
 
 	@Id
 	@GeneratedValue
@@ -27,15 +27,6 @@ public class Artist extends InputObject{
 
 	@ManyToMany(mappedBy = "artists")
 	private Collection<Song> songs;
-
-	@OneToMany(mappedBy = "inputObject")
-	private Collection<Rating> ratings;
-
-	@OneToMany(mappedBy = "inputObject")
-	private Collection<Comment> comments;
-
-	@ManyToMany(mappedBy = "inputObjects")
-	private Collection<Tag> tags;
 
 	public Long getId() {
 		return id;
@@ -57,34 +48,13 @@ public class Artist extends InputObject{
 		return songs;
 	}
 
-	public Collection<Rating> getRatings() {
-		return ratings;
-	}
-
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-
-	public Collection<Tag> getTags() {
-		return tags;
-	}
-
 	public Artist() {
 	}
 
 	public Artist(String name, String image) {
+		super();
 		this.name = name;
 		this.image = image;
-	}
-	
-	public Artist(String name, String image, Album album, Song song, Rating rating, Comment comment, Tag tag) {
-		this.name = name;
-		this.image = image;
-		this.albums = Arrays.asList(album);
-		this.songs = Arrays.asList(song);
-		this.ratings = Arrays.asList(rating);
-		this.comments = Arrays.asList(comment);
-		this.tags = Arrays.asList(tag);
 	}
 
 	public void addAlbumToArtist(Album album) {

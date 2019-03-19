@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Album extends InputObject{
+public class Album{
 
 	@Id
 	@GeneratedValue
@@ -32,13 +32,15 @@ public class Album extends InputObject{
 			@JoinColumn(name = "artist") })
 	private Collection<Artist> artists;
 
-	@OneToMany(mappedBy = "inputObject")
+	@OneToMany(mappedBy = "album")
 	private Collection<Rating> ratings;
 
-	@OneToMany(mappedBy = "inputObject")
+	@OneToMany(mappedBy = "album")
 	private Collection<Comment> comments;
 
-	@ManyToMany(mappedBy = "inputObjects")
+	@ManyToMany
+	@JoinTable(name = "album_tag", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
+			@JoinColumn(name = "tag") })
 	private Collection<Tag> tags;
 
 	public Album() {
@@ -49,6 +51,26 @@ public class Album extends InputObject{
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
+	}
+	
+	public Album(String title, String image, String recordLabel, Artist...artists) {
+		super();
+		this.title = title;
+		this.image = image;
+		this.recordLabel = recordLabel;
+		this.artists = Arrays.asList(artists);
+	}
+	
+	public Album(String title, String image, String recordLabel, Artist artist, Rating rating,
+			Comment comment, Tag tag) {
+		super();
+		this.title = title;
+		this.image = image;
+		this.recordLabel = recordLabel;
+		this.artists = Arrays.asList(artist);
+		this.ratings = Arrays.asList(rating);
+		this.comments = Arrays.asList(comment);
+		this.tags = Arrays.asList(tag);
 	}
 	
 	public Album(String title, String image, String recordLabel, Song song, Artist artist, Rating rating,
@@ -83,23 +105,53 @@ public class Album extends InputObject{
 	public Collection<Song> getSongs() {
 		return songs;
 	}
-
-	public Collection<Rating> getRatings() {
-		return ratings;
+	
+	public void addSongToAlbum(Song song) {
+		songs.add(song);
+	}
+	
+	public void addArtistToAlbum(Artist artist) {
+		artists.add(artist);
+	}
+	
+	public void addRatingToAlbum(Rating rating) {
+		ratings.add(rating);
 	}
 
-	public Collection<Comment> getComments() {
-		return comments;
+	public void addCommentToAlbum(Comment comment) {
+		comments.add(comment);
 	}
-
-	public Collection<Tag> getTags() {
-		return tags;
+	
+	public void addTagToAlbum(Tag tag) {
+		tags.add(tag);
+	}
+	
+	public boolean checkSongInAlbum(Song song) {
+		return songs.contains(song);
+	}
+	
+	public boolean checkArtistInAlbum(Artist artist) {
+		return artists.contains(artist);
+	}
+	
+	public boolean checkRatingInAlbum(Rating rating) {
+		return ratings.contains(rating);
+	}
+	
+	public boolean checkCommentInAlbum(Comment comment) {
+		return comments.contains(comment);
+	}
+	
+	public boolean checkTagInAlbum(Tag tag) {
+		return tags.contains(tag);
 	}
 
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", title=" + title + ", image=" + image + ", recordLabel=" + recordLabel + ", songs="
-				+ songs + ", artists=" + artists + "]";
+				+ songs + ", artists=" + artists + ", ratings=" + ratings + ", comments=" + comments + ", tags=" + tags
+				+ "]";
 	}
+
 
 }

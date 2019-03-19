@@ -1,13 +1,16 @@
+
+
+
 const app = document.querySelector("#app");
 
 app.textContent = "Hello JS!"
 
 fetch('/songs')
     .then(response => response.json())
-    .then(jsonData => {
+    .then(songs => {
         
         let content = `<ul>`
-        jsonData.forEach((song) => {
+        songs.forEach((song) => {
             content += `<li>${song.title} </li>`;
         })
         content += `</ul>`;

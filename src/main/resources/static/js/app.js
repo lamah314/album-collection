@@ -6,7 +6,7 @@ fetch('/songs')
     .then(response => response.json())
     .then(jsonData => {
         
-        const content = `<ul>`
+        let content = `<ul>`
         jsonData.forEach((song) => {
             content += `<li>${song.title} </li>`;
         })

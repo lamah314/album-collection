@@ -2,15 +2,15 @@ const app = document.querySelector("#app");
 
 app.textContent = "Hello JS!"
 
-fetch('/artists')
+fetch('/songs')
     .then(response => response.json())
     .then(jsonData => {
         
-        const content = '<ul>'
-        jasonData.forEach((artist) => {
-            content += ' <li>${artist.name} : ${artist.description}</li>'
+        const content = `<ul>`
+        jsonData.forEach((song) => {
+            content += `<li>${song.title} </li>`;
         })
-        content += '</ul>'
+        content += `</ul>`;
 
         app.innerHTML = content;
     })

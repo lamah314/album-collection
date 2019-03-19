@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Album {
+public class Album extends InputObject{
 
 	@Id
 	@GeneratedValue
@@ -32,13 +32,13 @@ public class Album {
 			@JoinColumn(name = "artist") })
 	private Collection<Artist> artists;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Rating> ratings;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Comment> comments;
 
-	@ManyToMany(mappedBy = "entities")
+	@ManyToMany(mappedBy = "inputObjects")
 	private Collection<Tag> tags;
 
 	public Album() {

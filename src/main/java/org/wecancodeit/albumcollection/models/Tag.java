@@ -1,5 +1,6 @@
 package org.wecancodeit.albumcollection.models;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -8,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
-import org.assertj.core.util.Arrays;
 
 @Entity
 public class Tag {
@@ -22,9 +20,9 @@ public class Tag {
 	private String tag;
 
 	@ManyToMany
-	@JoinTable(name = "tag_entity", joinColumns = { @JoinColumn(name = "tag") }, inverseJoinColumns = {
-			@JoinColumn(name = "entity") })
-	private Collection<Object> entities;
+	@JoinTable(name = "tag_inputObject", joinColumns = { @JoinColumn(name = "tag") }, inverseJoinColumns = {
+			@JoinColumn(name = "inputObject") })
+	private Collection<InputObject> inputObjects;
 
 	public Tag() {
 	}
@@ -33,22 +31,23 @@ public class Tag {
 		this.tag = tag;
 	}
 	
-	public Tag(String tag, Object...entities) {
+	public Tag(String tag, InputObject...inputObjects) {
 		this.tag = tag;
-		this.entities = Arrays.asList(entities);
+		this.inputObjects = Arrays.asList(inputObjects);
 	}
 
-	public int getRating() {
-		return rating;
+	public String getTag() {
+		return tag;
 	}
 
-	public Object getEntity() {
-		return entity;
+	public Collection<InputObject> getInputObject() {
+		return inputObjects;
 	}
 
 	@Override
 	public String toString() {
-		return "Rating [rating=" + rating + ", entity=" + entity + "]";
+		return "Tag [id=" + id + ", tag=" + tag + ", inputObjects=" + inputObjects + "]";
 	}
+
 
 }

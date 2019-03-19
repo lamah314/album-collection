@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Artist {
+public class Artist extends InputObject{
 
 	@Id
 	@GeneratedValue
@@ -20,7 +20,7 @@ public class Artist {
 
 	private String name;
 
-	private String imgUrl;
+	private String image;
 
 	@ManyToMany(mappedBy = "artists")
 	private Collection<Album> albums;
@@ -28,21 +28,21 @@ public class Artist {
 	@ManyToMany(mappedBy = "artists")
 	private Collection<Song> songs;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Rating> ratings;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Comment> comments;
 
-	@ManyToMany(mappedBy = "entities")
+	@ManyToMany(mappedBy = "inputObjects")
 	private Collection<Tag> tags;
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public String getImage() {
+		return image;
 	}
 
 	public String getName() {
@@ -72,14 +72,14 @@ public class Artist {
 	public Artist() {
 	}
 
-	public Artist(String name, String imgUrl) {
+	public Artist(String name, String image) {
 		this.name = name;
-		this.imgUrl = imgUrl;
+		this.image = image;
 	}
 	
-	public Artist(String name, String imgUrl, Album album, Song song, Rating rating, Comment comment, Tag tag) {
+	public Artist(String name, String image, Album album, Song song, Rating rating, Comment comment, Tag tag) {
 		this.name = name;
-		this.imgUrl = imgUrl;
+		this.image = image;
 		this.albums = Arrays.asList(album);
 		this.songs = Arrays.asList(song);
 		this.ratings = Arrays.asList(rating);
@@ -97,7 +97,7 @@ public class Artist {
 
 	@Override
 	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl + ", albums=" + albums
+		return "Artist [id=" + id + ", name=" + name + ", image=" + image + ", albums=" + albums
 				+ ", songs=" + songs + "]";
 	}
 

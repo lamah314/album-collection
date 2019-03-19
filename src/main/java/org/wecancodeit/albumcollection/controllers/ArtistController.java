@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.albumcollection.repositories.AlbumRepository;
 import org.wecancodeit.albumcollection.repositories.ArtistRepository;
 import org.wecancodeit.albumcollection.repositories.CommentRepository;
+import org.wecancodeit.albumcollection.repositories.RatingRepository;
 import org.wecancodeit.albumcollection.repositories.SongRepository;
 import org.wecancodeit.albumcollection.repositories.TagRepository;
 
@@ -24,7 +25,7 @@ public class ArtistController {
 	SongRepository songRepo;
 	
 	@Resource
-	TagRepository ratingRepo;
+	RatingRepository ratingRepo;
 	@Resource
 	CommentRepository commentRepo;
 	@Resource

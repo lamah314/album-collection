@@ -14,8 +14,8 @@ public class Rating {
 
 	private int rating;
 
-	@ManyToOne
-	Object entity;
+	@ManyToOne	
+	InputObject inputObject;
 
 	public Rating() {
 	}
@@ -24,22 +24,23 @@ public class Rating {
 		this.rating = rating;
 	}
 	
-	public Rating(int rating, Object entity) {
+	public Rating(int rating, InputObject inputObject) {
 		this.rating = rating;
-		this.entity = entity;
+		this.inputObject = inputObject;
 	}
 
 	public int getRating() {
 		return rating;
 	}
 
-	public Object getEntity() {
-		return entity;
+	public Object getInputObject() {
+		return inputObject;
 	}
 
 	@Override
 	public String toString() {
-		return "Rating [rating=" + rating + ", entity=" + entity + "]";
+		return "Rating [id=" + id + ", rating=" + rating + ", inputObject=" + inputObject + "]";
 	}
+
 
 }

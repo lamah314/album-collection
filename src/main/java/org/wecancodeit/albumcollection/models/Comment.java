@@ -16,7 +16,7 @@ public class Comment {
 
 	
 	@ManyToOne	
-	Object entity;
+	InputObject inputObject;
 	
 	
 	public Comment() {}
@@ -25,9 +25,9 @@ public class Comment {
 		this.commentContent = commentContent;
 	}
 	
-	public Comment(String commentContent, Object entity) {
+	public Comment(String commentContent, InputObject inputObject) {
 		this.commentContent = commentContent;
-		this.entity = entity;
+		this.inputObject = inputObject;
 
 	}
 

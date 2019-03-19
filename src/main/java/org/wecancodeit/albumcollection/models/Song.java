@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Song {
+public class Song extends InputObject{
 
 	@Id
 	@GeneratedValue
@@ -30,17 +31,17 @@ public class Song {
 			@JoinColumn(name = "album") })
 	private Collection<Album> albums;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Rating> ratings;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "inputObject")
 	private Collection<Comment> comments;
 
-	@ManyToMany(mappedBy = "entities")
+	@ManyToMany(mappedBy = "inputObjects")
 	private Collection<Tag> tags;
 
 	public Song() {
-	};
+	}
 
 	public Song(String title, String link, String duration) {
 		this.title = title;

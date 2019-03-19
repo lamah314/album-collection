@@ -22,13 +22,13 @@ public class Song{
 	private String duration;
 
 	@ManyToMany
-	@JoinTable(name = "song_artist", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-			@JoinColumn(name = "artist") })
+//	@JoinTable(name = "song_artist", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
+//			@JoinColumn(name = "artist") })
 	private Collection<Artist> artists;
 
 	@ManyToMany
-	@JoinTable(name = "song_album", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-			@JoinColumn(name = "album") })
+//	@JoinTable(name = "song_album", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
+//			@JoinColumn(name = "album") })
 	private Collection<Album> albums;
 
 	public Song() {

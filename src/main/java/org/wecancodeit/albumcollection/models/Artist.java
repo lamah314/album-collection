@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Artist{
 
@@ -23,9 +25,11 @@ public class Artist{
 	private String image;
 
 	@ManyToMany(mappedBy = "artists")
+	@JsonIgnore
 	private Collection<Album> albums;
 
 	@ManyToMany(mappedBy = "artists")
+	@JsonIgnore
 	private Collection<Song> songs;
 
 	public Long getId() {

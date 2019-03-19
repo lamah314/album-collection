@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Album{
 
@@ -25,11 +27,13 @@ public class Album{
 	private String recordLabel;
 
 	@ManyToMany(mappedBy = "albums")
+	@JsonIgnore
 	private Collection<Song> songs;
 
 	@ManyToMany
-	@JoinTable(name = "album_artist", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
-			@JoinColumn(name = "artist") })
+//	@JoinTable(name = "album_artist", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
+//			@JoinColumn(name = "artist") })
+	@JsonIgnore
 	private Collection<Artist> artists;
 
 	@OneToMany(mappedBy = "album")
@@ -39,8 +43,8 @@ public class Album{
 	private Collection<Comment> comments;
 
 	@ManyToMany
-	@JoinTable(name = "album_tag", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
-			@JoinColumn(name = "tag") })
+//	@JoinTable(name = "album_tag", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
+//			@JoinColumn(name = "tag") })
 	private Collection<Tag> tags;
 
 	public Album() {

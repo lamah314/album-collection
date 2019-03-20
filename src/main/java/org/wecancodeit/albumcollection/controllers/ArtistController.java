@@ -33,6 +33,7 @@ public class ArtistController {
 //	public String getArtistHome() {
 //		return "/artists/home";
 //	}
+	
 	@GetMapping("")
 	public Collection<Artist> getArtists() {
 		return (Collection<Artist>) artistRepo.findAll();
@@ -44,7 +45,7 @@ public class ArtistController {
 	}
 	
 	@PostMapping("/addArtist")
-	public void addArtist(Artist artist) {
+	public void addArtist(Artist newArtist) {
 		artistRepo.save(new Artist("Red", "Red img"));
 	}
 		

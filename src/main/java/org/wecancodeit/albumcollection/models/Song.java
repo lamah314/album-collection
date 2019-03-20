@@ -53,25 +53,10 @@ public class Song{
 		this.title = title;
 		this.link = link;
 		this.duration = duration;
-	}
-
-	public Song(String title, String link, String duration, Artist artist, Album album) {
-		this.title = title;
-		this.link = link;
-		this.duration = duration;
-		this.artists = Arrays.asList(artist);
-		this.albums = Arrays.asList(album);
-	}
-	
-	public Song(String title, String link, String duration, Artist artist, Album album, Rating rating,
-			Comment comment) {
-		this.title = title;
-		this.link = link;
-		this.duration = duration;
-		this.artists = Arrays.asList(artist);
-		this.albums = Arrays.asList(album);
-		this.songRatings = Arrays.asList(rating);
-		this.songComments = Arrays.asList(comment);
+		this.artists = new ArrayList<Artist>();
+		this.albums = new ArrayList<Album>();
+		this.songRatings = new ArrayList<Rating>();
+		this.songComments = new ArrayList<Comment>();
 	}
 
 	public Long getId() {
@@ -114,11 +99,11 @@ public class Song{
 		albums.add(album);
 	}
 	
-	public void addRatingToAlbum(Rating rating) {
+	public void addRatingToSong(Rating rating) {
 		songRatings.add(rating);
 	}
 
-	public void addCommentToAlbum(Comment comment) {
+	public void addCommentToSong(Comment comment) {
 		songComments.add(comment);
 	}
 	

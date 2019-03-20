@@ -1,20 +1,15 @@
 package org.wecancodeit.albumcollection.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Artist{
@@ -75,22 +70,12 @@ public class Artist{
 	public Artist(String name, String image) {
 		this.name = name;
 		this.image = image;
-	}
-	
-	public Artist(String name, String image, Rating rating,
-			Comment comment) {
-		this.name = name;
-		this.image = image;
-		this.artistRatings = Arrays.asList(rating);
-		this.artistComments = Arrays.asList(comment);
+		this.artistRatings = new ArrayList<Rating>();
+		this.artistComments = new ArrayList<Comment>();
 	}
 
 	public void addAlbumToArtist(Album album) {
 		albums.add(album);
-	}
-
-	public void addRatingToAlbum(Rating rating) {
-		artistRatings.add(rating);
 	}
 
 	public void addCommentToAlbum(Comment comment) {
@@ -99,10 +84,6 @@ public class Artist{
 	
 	public boolean checkAlbumInArtist(Album album) {
 		return albums.contains(album);
-	}
-
-	public boolean checkRatingInAlbum(Rating rating) {
-		return artistRatings.contains(rating);
 	}
 	
 	public boolean checkCommentInAlbum(Comment comment) {

@@ -58,45 +58,54 @@ public class Album{
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
+		this.artists = new ArrayList<Artist>();
+		this.songs = new ArrayList<Song>();
+		this.albumRatings = new ArrayList<Rating>();
+		this.albumComments = new ArrayList<Comment>();
+		this.tags = new ArrayList<Tag>();
 	}
 	
-	public Album(String title, String image, String recordLabel, Artist...artists) {
-		this.title = title;
-		this.image = image;
-		this.recordLabel = recordLabel;
-		this.artists = Arrays.asList(artists);
-	}
-	
-	public Album(String title, String image, String recordLabel, Song...songs) {
-		this.title = title;
-		this.image = image;
-		this.recordLabel = recordLabel;
-		this.songs = Arrays.asList(songs);
-	}
-	
-	public Album(String title, String image, String recordLabel, Artist artist, Rating rating,
-			Comment comment, Tag tag) {
-		super();
-		this.title = title;
-		this.image = image;
-		this.recordLabel = recordLabel;
-		this.artists = Arrays.asList(artist);
-		this.albumRatings = Arrays.asList(rating);
-		this.albumComments = Arrays.asList(comment);
-		this.tags = Arrays.asList(tag);
-	}
-	
-	public Album(String title, String image, String recordLabel, Song song, Artist artist, Rating rating,
-			Comment comment, Tag tag) {
-		this.title = title;
-		this.image = image;
-		this.recordLabel = recordLabel;
-		this.songs = Arrays.asList(song);
-		this.artists = Arrays.asList(artist);
-		this.albumRatings = Arrays.asList(rating);
-		this.albumComments = Arrays.asList(comment);
-		this.tags = Arrays.asList(tag);
-	}
+//	public Album(String title, String image, String recordLabel, Artist...artists) {
+//		this.title = title;
+//		this.image = image;
+//		this.recordLabel = recordLabel;
+//		this.artists = Arrays.asList(artists);
+//		this.albumRatings = new ArrayList<Rating>();
+//		this.albumComments = new ArrayList<Comment>();
+//		this.tags = new ArrayList<Tag>();
+//	}
+//	
+//	public Album(String title, String image, String recordLabel, Song...songs) {
+//		this.title = title;
+//		this.image = image;
+//		this.recordLabel = recordLabel;
+//		this.songs = Arrays.asList(songs);
+//		this.albumRatings = new ArrayList<Rating>();
+//		this.albumComments = new ArrayList<Comment>();
+//		this.tags = new ArrayList<Tag>();
+//	}
+//	
+//	public Album(String title, String image, String recordLabel, Artist artist, Rating rating,
+//			Comment comment, Tag tag) {
+//		this.title = title;
+//		this.image = image;
+//		this.recordLabel = recordLabel;
+//		this.artists = Arrays.asList(artist);
+//		this.albumRatings = Arrays.asList(rating);
+//		this.albumComments = Arrays.asList(comment);
+//		this.tags = Arrays.asList(tag);
+//	}
+//	
+//	public Album(String title, String image, String recordLabel, Song song, Artist artist) {
+//		this.title = title;
+//		this.image = image;
+//		this.recordLabel = recordLabel;
+//		this.songs = Arrays.asList(song);
+//		this.artists = Arrays.asList(artist);
+//		this.albumRatings = new ArrayList<Rating>();
+//		this.albumComments = new ArrayList<Comment>();
+//		this.tags = new ArrayList<Tag>();
+//	}
 
 	public Long getId() {
 		return id;

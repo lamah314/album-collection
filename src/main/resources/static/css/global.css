@@ -30,8 +30,8 @@ html {
     justify-content: space-between;
     align-items: center;
 }
-.app {
-    height: 100%;
+main {
+    min-height: 100vh;
 }
 .footer {
     width: 100%;

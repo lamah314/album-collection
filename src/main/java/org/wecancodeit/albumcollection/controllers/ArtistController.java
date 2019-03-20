@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.albumcollection.models.Artist;
@@ -37,5 +38,14 @@ public class ArtistController {
 		return (Collection<Artist>) artistRepo.findAll();
 	}
 	
+	@GetMapping("/addArtist")
+	public ArtistRepository getArtistRepo() {
+		return artistRepo;
+	}
 	
+	@PostMapping("/addArtist")
+	public void addArtist(Artist artist) {
+		artistRepo.save(new Artist("Red", "Red img"));
+	}
+		
 }

@@ -27,12 +27,11 @@ public class Album{
 	private String recordLabel;
 
 	@ManyToMany(mappedBy = "albums")
-	@JsonIgnore
 	private Collection<Song> songs;
 
 	@ManyToMany
-//	@JoinTable(name = "album_artist", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
-//			@JoinColumn(name = "artist") })
+	@JoinTable(name = "album_artist", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
+			@JoinColumn(name = "artist") })
 	@JsonIgnore
 	private Collection<Artist> artists;
 
@@ -58,11 +57,17 @@ public class Album{
 	}
 	
 	public Album(String title, String image, String recordLabel, Artist...artists) {
-		super();
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
 		this.artists = Arrays.asList(artists);
+	}
+	
+	public Album(String title, String image, String recordLabel, Song...songs) {
+		this.title = title;
+		this.image = image;
+		this.recordLabel = recordLabel;
+		this.songs = Arrays.asList(songs);
 	}
 	
 	public Album(String title, String image, String recordLabel, Artist artist, Rating rating,
@@ -108,6 +113,10 @@ public class Album{
 
 	public Collection<Song> getSongs() {
 		return songs;
+	}
+	
+	public Collection<Artist> getArtists() {
+		return artists;
 	}
 	
 	public void addSongToAlbum(Song song) {

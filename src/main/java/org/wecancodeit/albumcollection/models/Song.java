@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Song{
 
@@ -22,13 +24,15 @@ public class Song{
 	private String duration;
 
 	@ManyToMany
-//	@JoinTable(name = "song_artist", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-//			@JoinColumn(name = "artist") })
+	@JoinTable(name = "song_artist", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
+			@JoinColumn(name = "artist") })
+	@JsonIgnore
 	private Collection<Artist> artists;
 
 	@ManyToMany
-//	@JoinTable(name = "song_album", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-//			@JoinColumn(name = "album") })
+	@JoinTable(name = "song_album", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
+			@JoinColumn(name = "album") })
+	@JsonIgnore
 	private Collection<Album> albums;
 
 	public Song() {

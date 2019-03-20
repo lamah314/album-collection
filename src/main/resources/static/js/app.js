@@ -1,50 +1,40 @@
-
-
-
-const app = document.querySelector("#app");
-
-app.textContent = "Hello JS!"
-
-fetch('/songs')
-    .then(response => response.json())
-    .then(songs => {
-        
-        let content = `<ul>`
-        songs.forEach((song) => {
-            content += `<li>TITLE: ${song.title} LINK: ${song.link} DURATION: ${song.duration} </li>`;
-            
-        })
-        content += `</ul>`;
-
-        app.innerHTML = content;
-    })
-    
- const artist = document.querySelector("#artist");
-    fetch('/artists')
+const artist = document.querySelector("#artist");
+fetch('/artists')
     .then(response => response.json())
     .then(artists => {
-        
+
         let contentArtist = `<ul>`
         artists.forEach((artist) => {
-            contentArtist += `<li>NAME: ${artist.name} IMAGE: ${artist.image} </li>`;
+            let albums = ''
+            artist.albums.forEach(album => {
+                let songs = ''
+                album.songs.forEach(song => {
+                    songs += `
+                    <li class = "song">
+                        Song: ${song.title}
+                    </li>`
+                })
+                albums += `
+                    <li class = "album">
+                        <h5 class= "album_title">Album: ${album.title}</h5>
+                        <ul class= "songs">
+                        ${songs}
+                        </ul>
+                    </li>`
+            })
+            contentArtist += `
+                <li>Artist: ${artist.name}
+                    <ul class="albums">
+                    ${albums}
+                    </ul>
+                </li>
+                `;
         })
         contentArtist += `</ul>`;
 
         artist.innerHTML = contentArtist;
     })
-    
-    const album = document.querySelector("#album");
-    fetch('/albums')
-    .then(response => response.json())
-    .then(albums => {
-        
-        let contentAlbums = `<ul>`
-        albums.forEach((album) => {
-            contentAlbums += `<li>NAME: ${album.title} IMAGE: ${album.image} ${album.recordLabel}</li>`;
-        })
-        contentAlbums += `</ul>`;
 
-        album.innerHTML = contentAlbums;
-    })
-    
     .catch(err => console.log(err))
+
+// <h5 class= "song_title">Song: ${song.title}</h5>

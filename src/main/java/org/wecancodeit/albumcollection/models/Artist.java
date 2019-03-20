@@ -25,11 +25,9 @@ public class Artist{
 	private String image;
 
 	@ManyToMany(mappedBy = "artists")
-	@JsonIgnore
 	private Collection<Album> albums;
 
 	@ManyToMany(mappedBy = "artists")
-	@JsonIgnore
 	private Collection<Song> songs;
 
 	public Long getId() {

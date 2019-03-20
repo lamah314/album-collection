@@ -1,8 +1,11 @@
 package org.wecancodeit.albumcollection.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,6 +37,14 @@ public class Song{
 			@JoinColumn(name = "album") })
 	@JsonIgnore
 	private Collection<Album> albums;
+	
+	@ElementCollection
+	@CollectionTable
+	private Collection<Rating> songRatings;
+
+	@ElementCollection
+	@CollectionTable
+	private Collection<Comment> songComments;
 
 	public Song() {
 	}
@@ -50,6 +61,17 @@ public class Song{
 		this.duration = duration;
 		this.artists = Arrays.asList(artist);
 		this.albums = Arrays.asList(album);
+	}
+	
+	public Song(String title, String link, String duration, Artist artist, Album album, Rating rating,
+			Comment comment) {
+		this.title = title;
+		this.link = link;
+		this.duration = duration;
+		this.artists = Arrays.asList(artist);
+		this.albums = Arrays.asList(album);
+		this.songRatings = Arrays.asList(rating);
+		this.songComments = Arrays.asList(comment);
 	}
 
 	public Long getId() {
@@ -76,12 +98,28 @@ public class Song{
 		return albums;
 	}
 
+	public Collection<Rating> getSongRatings() {
+		return songRatings;
+	}
+
+	public Collection<Comment> getSongComments() {
+		return songComments;
+	}
+
 	public void addArtistToSong(Artist artist) {
 		artists.add(artist);
 	}
 	
 	public void addAlbumToSong(Album album) {
 		albums.add(album);
+	}
+	
+	public void addRatingToAlbum(Rating rating) {
+		songRatings.add(rating);
+	}
+
+	public void addCommentToAlbum(Comment comment) {
+		songComments.add(comment);
 	}
 	
 	public boolean checkArtistInSong(Artist artist) {
@@ -92,6 +130,13 @@ public class Song{
 		return albums.contains(album);
 	}
 
+	public boolean checkRatingInAlbum(Rating rating) {
+		return songRatings.contains(rating);
+	}
+	
+	public boolean checkCommentInAlbum(Comment comment) {
+		return songComments.contains(comment);
+	}
 
 	@Override
 	public String toString() {

@@ -11,7 +11,7 @@ fetch('/artists')
                 album.songs.forEach(song => {
                     songs += `
                     <li class = "song">
-                        Song: ${song.title}
+                        <h5 class= "song_title">Song: ${song.title}</h5>
                     </li>`
                 })
                 albums += `

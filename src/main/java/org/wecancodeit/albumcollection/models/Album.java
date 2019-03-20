@@ -1,15 +1,18 @@
 package org.wecancodeit.albumcollection.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,11 +38,13 @@ public class Album{
 	@JsonIgnore
 	private Collection<Artist> artists;
 
-	@OneToMany(mappedBy = "album")
-	private Collection<Rating> ratings;
+	@ElementCollection
+	@CollectionTable
+	private Collection<Rating> albumRatings;
 
-	@OneToMany(mappedBy = "album")
-	private Collection<Comment> comments;
+	@ElementCollection
+	@CollectionTable
+	private Collection<Comment> albumComments;
 
 	@ManyToMany
 //	@JoinTable(name = "album_tag", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
@@ -50,7 +55,6 @@ public class Album{
 	}
 
 	public Album(String title, String image, String recordLabel) {
-		super();
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
@@ -77,21 +81,20 @@ public class Album{
 		this.image = image;
 		this.recordLabel = recordLabel;
 		this.artists = Arrays.asList(artist);
-		this.ratings = Arrays.asList(rating);
-		this.comments = Arrays.asList(comment);
+		this.albumRatings = Arrays.asList(rating);
+		this.albumComments = Arrays.asList(comment);
 		this.tags = Arrays.asList(tag);
 	}
 	
 	public Album(String title, String image, String recordLabel, Song song, Artist artist, Rating rating,
 			Comment comment, Tag tag) {
-		super();
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
 		this.songs = Arrays.asList(song);
 		this.artists = Arrays.asList(artist);
-		this.ratings = Arrays.asList(rating);
-		this.comments = Arrays.asList(comment);
+		this.albumRatings = Arrays.asList(rating);
+		this.albumComments = Arrays.asList(comment);
 		this.tags = Arrays.asList(tag);
 	}
 
@@ -128,11 +131,11 @@ public class Album{
 	}
 	
 	public void addRatingToAlbum(Rating rating) {
-		ratings.add(rating);
+		albumRatings.add(rating);
 	}
 
 	public void addCommentToAlbum(Comment comment) {
-		comments.add(comment);
+		albumComments.add(comment);
 	}
 	
 	public void addTagToAlbum(Tag tag) {
@@ -148,11 +151,11 @@ public class Album{
 	}
 	
 	public boolean checkRatingInAlbum(Rating rating) {
-		return ratings.contains(rating);
+		return albumRatings.contains(rating);
 	}
 	
 	public boolean checkCommentInAlbum(Comment comment) {
-		return comments.contains(comment);
+		return albumComments.contains(comment);
 	}
 	
 	public boolean checkTagInAlbum(Tag tag) {
@@ -162,7 +165,7 @@ public class Album{
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", title=" + title + ", image=" + image + ", recordLabel=" + recordLabel + ", songs="
-				+ songs + ", artists=" + artists + ", ratings=" + ratings + ", comments=" + comments + ", tags=" + tags
+				+ songs + ", artists=" + artists + ", ratings=" + albumRatings + ", comments=" + albumComments + ", tags=" + tags
 				+ "]";
 	}
 

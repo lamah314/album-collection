@@ -4,10 +4,15 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.albumcollection.models.Album;
+import org.wecancodeit.albumcollection.models.Song;
 import org.wecancodeit.albumcollection.repositories.AlbumRepository;
 import org.wecancodeit.albumcollection.repositories.ArtistRepository;
 import org.wecancodeit.albumcollection.repositories.SongRepository;
@@ -35,5 +40,11 @@ public class AlbumController {
 	@GetMapping("")
 	public Collection<Album> getAlbums() {
 		return (Collection<Album>) albumRepo.findAll();
+	}
+	
+	@PostMapping("/addAlbum")
+	public void addAlbum(@RequestBody String newAlbum) throws JSONException{
+		JSONObject json = new JSONObject(newAlbum);
+		albumRepo.save(new Album(json.getString("title"), json.getString("image"), json.getString("recordLabel")));
 	}
 }

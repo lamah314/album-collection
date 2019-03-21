@@ -38,5 +38,4 @@ fetch('/artists')
 
     .catch(err => console.log(err))
 
-fetch('/artist/addArtist')
 // <h5 class= "song_title">Song: ${song.title}</h5>

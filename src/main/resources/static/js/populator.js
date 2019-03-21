@@ -1,6 +1,6 @@
 let newArtist = {
-    name: 'Red Hot Chili Peppers',
-    image: 'Red Hot Chili Peppers img'
+    name: "Red Hot Chili Peppers",
+    image: "Red Hot Chili Peppers img"
 }
 
 // postData(`/artists/addArtist`, {
@@ -27,10 +27,8 @@ let newArtist = {
 
 fetch("/artists/addArtist", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            "Content-Type": "text/plain",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: newArtist, // body data type must match "Content-Type" header
+        body: JSON.stringify(newArtist), // body data type must match "Content-Type" header
     })
-    .then(response => response.json()); // parses JSON response into native Javascript objects
+    .then(response => response.json()) // parses JSON response into native Javascript objects
+    .catch(err => console.log(err))
+    

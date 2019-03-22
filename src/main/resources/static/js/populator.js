@@ -25,7 +25,7 @@ let newArtist = {
 
 fetch("/artists/addArtist", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-        body: JSON.stringify(newArtist), // body data type must match "Content-Type" header
+        body: JSON.stringify(newArtist) // body data type must match "Content-Type" header
     })
     .then(response => response.json()) // parses JSON response into native Javascript objects
     .catch(err => console.log(err))

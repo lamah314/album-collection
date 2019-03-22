@@ -70,6 +70,8 @@ public class Artist{
 	public Artist(String name, String image) {
 		this.name = name;
 		this.image = image;
+		this.albums = new ArrayList<Album>();
+		this.songs = new ArrayList<Song>();
 		this.artistRatings = new ArrayList<Rating>();
 		this.artistComments = new ArrayList<Comment>();
 	}

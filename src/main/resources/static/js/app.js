@@ -5,8 +5,18 @@ getRequest('/artists', artists => {
 })
 
 on(getArtistContext(), 'click', () => {
+    if (event.target.classList.contains('add__artist--submit')) {
+        const name = document.querySelector('.add__artist--name').value
+        const image = document.querySelector('.add__artist--image').value
+        postRequest('/artists/addArtist', {
+            name: name,
+            image: image
+        }, (artists) => {
+            console.log(artists);
+            getArtistContext().innerHTML = renderArtistsAndAlbumsAndSongs(artists);
+        })
+    }
     if (event.target.classList.contains('add__song--submit')) {
-        const submitButton = event.target
         const title = document.querySelector('.add__song--title').value
         const link = document.querySelector('.add__song--link').value
         const duration = document.querySelector('.add__song--duration').value
@@ -15,10 +25,13 @@ on(getArtistContext(), 'click', () => {
             link: link,
             duration: duration
         }, (songs) => {
-            console.log(songs)
+            getArtistContext().innerHTML = renderSongs(songs);
         })
     }
+    console.log("checker")
 })
+
+
 
 function getArtistContext() {
     return document.querySelector("#artist");
@@ -56,9 +69,9 @@ function renderSongs(songs) {
         .join("")}
         </ul>
         <section class="add__song">
-            <input type="text" class="add__song--title">
-            <input type="text" class="add__song--link">
-            <input type="text" class="add__song--duration">
+            <input type="text" class="add__song--title" placeholder="title">
+            <input type="text" class="add__song--link" placeholder="link">
+            <input type="text" class="add__song--duration" placeholder="duration">
             <button class="add__song--submit">Add Song</button>
         </section>
         `;
@@ -108,11 +121,16 @@ function renderArtistsAndAlbumsAndSongs(artists) {
     })
     .join("")}
     </ul>
+    <section class="add__artist">
+    <input type="text" class="add__artist--name" placeholder="name">
+    <input type="text" class="add__artist--image" placeholder="image">
+    <button class="add__artist--submit">Add Artist</button>
+    </section>
     `;
 }
 
 // Event Functions
 
 function on(element, eventType, callback) {
-    element.addEventListener(eventType, () => callback)
+    element.addEventListener(eventType, (event) => callback(event))
 }

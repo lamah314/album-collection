@@ -48,9 +48,10 @@ public class ArtistController {
 //	}
 	
 	@PostMapping("/addArtist")
-	public void addArtist(@RequestBody String newArtist) throws JSONException{
+	public Collection<Artist> addArtist(@RequestBody String newArtist) throws JSONException{
 		JSONObject json = new JSONObject(newArtist);
 		artistRepo.save(new Artist(json.getString("name"), json.getString("image")));
+		return (Collection<Artist>) artistRepo.findAll();
 	}
 		
 }

@@ -24,8 +24,23 @@ function main() {
                 getArtistContext().innerHTML = Artists(artists);
             })
         }
+        if (event.target.classList.contains('add__album--submit')) {
+            const artist = document.querySelector('.artist__id--artist').value
+            const title = document.querySelector('.add__album--title').value
+            const image = document.querySelector('.add__album--image').value
+            const recordLabel = document.querySelector('.add__album--recordLabel').value
+            console.log(album)
+            api.postRequest('/albums/addAlbum', {
+                artist: artist,
+                title: title,
+                image: image,
+                recordLabel: recordLabel
+            }, (artists) => {
+                getArtistContext().innerHTML = Artists(artists);
+            })
+        }
         if (event.target.classList.contains('add__song--submit')) {
-            const album = document.querySelector('.add__song--album').value
+            const album = document.querySelector('.album__id--album').value
             const title = document.querySelector('.add__song--title').value
             const link = document.querySelector('.add__song--link').value
             const duration = document.querySelector('.add__song--duration').value

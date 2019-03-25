@@ -43,6 +43,7 @@ public class Populator implements CommandLineRunner {
 		Album album1 = albumRepo.save(new Album("Nevermind", "albumNevermind.img", "DGC"));
 		Song song1 = songRepo.save(new Song("Lithium", "https://www.youtube.com/watch?v=pkcJEvMcnEg", "4:16"));
 		Song song2 = songRepo.save(new Song("Heart Shaped Box", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
+		
 		Album album11 = albumRepo.save(new Album("In Utero", "albumInUtero.img", "DGC"));
 		Song song11 = songRepo.save(new Song("All Apologies", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
 		Artist artist2 = artistRepo.save(new Artist("Nine Inch Nails", "NineInchNails img"));

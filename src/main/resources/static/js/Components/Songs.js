@@ -1,4 +1,4 @@
-export default function renderSongs(songs) {
+export default function renderSongs(songs, albumTitle) {
     return `
     <ul class="songs">
     ${songs.map(song => {
@@ -11,6 +11,7 @@ export default function renderSongs(songs) {
         .join("")}
         </ul>
         <section class="add__song">
+            <input type="hidden" class="add__song--album" placeholder="" value =${albumTitle}>
             <input type="text" class="add__song--title" placeholder="title">
             <input type="text" class="add__song--link" placeholder="link">
             <input type="text" class="add__song--duration" placeholder="duration">

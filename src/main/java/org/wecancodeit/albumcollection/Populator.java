@@ -43,7 +43,8 @@ public class Populator implements CommandLineRunner {
 		Album album1 = albumRepo.save(new Album("Nevermind", "albumNevermind.img", "DGC"));
 		Song song1 = songRepo.save(new Song("Lithium", "https://www.youtube.com/watch?v=pkcJEvMcnEg", "4:16"));
 		Song song2 = songRepo.save(new Song("Heart Shaped Box", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
-
+		Album album11 = albumRepo.save(new Album("In Utero", "albumInUtero.img", "DGC"));
+		Song song11 = songRepo.save(new Song("All Apologies", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
 		Artist artist2 = artistRepo.save(new Artist("Nine Inch Nails", "NineInchNails img"));
 		Album album2 = albumRepo.save(new Album("Pretty Hate Machine", "albumPrettyHateMachine.img", "TVT"));
 		Song song3 = songRepo.save(new Song("Down In It", "https://www.youtube.com/watch?v=NkphW38WyYo", "4:37"));
@@ -58,6 +59,11 @@ public class Populator implements CommandLineRunner {
 		album1.addRatingToAlbum(rating1);
 		album1.addCommentToAlbum(comment1);
 		album1.addTagToAlbum(tag1);
+		
+		album11.addArtistToAlbum(artist1);
+		album11.addRatingToAlbum(rating1);
+		album11.addCommentToAlbum(comment1);
+		album11.addTagToAlbum(tag1);
 
 		album2.addArtistToAlbum(artist2);
 		album2.addRatingToAlbum(rating1);
@@ -70,13 +76,19 @@ public class Populator implements CommandLineRunner {
 		album3.addTagToAlbum(tag1);
 
 		albumRepo.save(album1);
+		albumRepo.save(album11);
 		albumRepo.save(album2);
 		albumRepo.save(album3);
-
+		
 		song1.addArtistToSong(artist1);
 		song1.addAlbumToSong(album1);
 		song1.addRatingToSong(rating1);
 		song1.addCommentToSong(comment1);
+		
+		song11.addArtistToSong(artist1);
+		song11.addAlbumToSong(album11);
+		song11.addRatingToSong(rating1);
+		song11.addCommentToSong(comment1);
 
 		song2.addArtistToSong(artist1);
 		song2.addAlbumToSong(album1);
@@ -109,5 +121,6 @@ public class Populator implements CommandLineRunner {
 		songRepo.save(song4);
 		songRepo.save(song5);
 		songRepo.save(song6);
+		songRepo.save(song11);
 	}
 }

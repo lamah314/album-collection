@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.albumcollection.models.Album;
 import org.wecancodeit.albumcollection.models.Artist;
 import org.wecancodeit.albumcollection.models.Song;
 import org.wecancodeit.albumcollection.repositories.AlbumRepository;
@@ -43,10 +44,13 @@ public class SongController {
 	}
 	
 	@PostMapping("/addSong")
-	public Collection<Song> addSong(@RequestBody String body) throws JSONException{
+	public Collection<Artist> addSong(@RequestBody String body) throws JSONException{
 		JSONObject json = new JSONObject(body);
-		songRepo.save(new Song(json.getString("title"), json.getString("link"), json.getString("duration")));
-		return (Collection<Song>) songRepo.findAll();
+		Song song = songRepo.save(new Song(json.getString("title"), json.getString("link"), json.getString("duration")));
+		Album album = albumRepo.findByTitle(json.getString("album"));
+		song.addAlbumToSong(album);
+		albumRepo.save(album);
+		return (Collection<Artist>) artistRepo.findAll();
 	}
 
 }

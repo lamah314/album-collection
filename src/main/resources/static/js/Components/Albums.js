@@ -22,7 +22,7 @@ function renderAlbumsAndSongs(albums) {
         return `
                 <li class="album">
                     <h5 class="album__title">${album.title}</h5>  
-                        ${Songs(album.songs)}             
+                        ${Songs(album.songs, album.title)}             
                 </li>
             `;
     })

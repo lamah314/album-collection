@@ -131,9 +131,7 @@ public class Album{
 		return artists;
 	}
 	
-	public void addSongToAlbum(Song song) {
-		songs.add(song);
-	}
+
 	
 	public void addArtistToAlbum(Artist artist) {
 		artists.add(artist);

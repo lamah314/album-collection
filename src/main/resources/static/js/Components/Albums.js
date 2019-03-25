@@ -15,7 +15,7 @@ function renderAlbums(albums) {
         `;
 }
 
-function renderAlbumsAndSongs(albums) {
+function renderAlbumsAndSongs(albums, artistName) {
     return `
     <ul class="albums">
     ${albums.map(album => {
@@ -28,6 +28,13 @@ function renderAlbumsAndSongs(albums) {
     })
     .join("")}
     </ul>
+    <section class="add__album">
+            <input type="hidden" class="add__album--artist" placeholder="" value =${artistName}>
+            <input type="text" class="add__album--title" placeholder="title">
+            <input type="text" class="add__album--image" placeholder="image">
+            <input type="text" class="add__album--recordLabel" placeholder="recordLabel">
+            <button class="add__album--submit">Add Album</button>
+        </section>
     `;
 }
 

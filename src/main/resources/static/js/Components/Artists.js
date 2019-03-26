@@ -18,9 +18,9 @@ export default function renderArtistsAndAlbumsAndSongs(artists) {
     .join("")}
     </ul>
     <div>
-        ${Add.addArtist}
-        ${Add.addAlbum}
-        ${Add.addSong}
+        ${Add.addArtist()}
+        ${Add.addAlbum()}
+        ${Add.addSong()}
     </div>
     `;
 }

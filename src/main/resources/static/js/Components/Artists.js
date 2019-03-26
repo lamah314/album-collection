@@ -4,7 +4,7 @@ import Albums from './Albums'
 
 
 
-export default function renderArtistsAndAlbumsAndSongs(artists) {
+function renderArtistsAndAlbumsAndSongs(artists) {
     return `
     <div>
         <ul class="artists">
@@ -19,19 +19,36 @@ export default function renderArtistsAndAlbumsAndSongs(artists) {
         .join("")}
         </ul>
     </div>
-    <div>
+    <div class="user-input">
         ${Add.addArtist()}
-        ${Add.addComment()}
-
         ${Add.addAlbum()}
         ${Add.addSong()}
     </div>
     `;
 }
 
-{/* <section class="add__artist">
-<input type="text" class="add__artist--name" placeholder="name">
-<input type="text" class="add__artist--image" placeholder="image">
-<button class="add__artist--submit">Add Artist</button>
-</section> */}
+function renderArtists(artists) {
+    return `
+    <div>
+        <ul class="artists">
+            ${artists.map(artist => {
+            return `
+                    <li class="artist">
+                        <h5 class="artist__name">${artist.name}</h5>  
+                                                
+                    </li>
+                `;
+        })
+        .join("")}
+        </ul>
+    </div>
+    <div class="user-input">
+        ${Add.addArtist()}
+    </div>
+    `;
+}
+
+export default {
+    renderArtists, renderArtistsAndAlbumsAndSongs
+}
  

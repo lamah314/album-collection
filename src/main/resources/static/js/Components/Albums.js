@@ -1,7 +1,9 @@
 import Songs from './Songs'
+import Add from './add'
 
-function renderAlbums(albums) {
+function renderAlbumsAdd(albums) {
     return `
+    <div>
     <ul class="albums">
     ${albums.map(album => {
             return `
@@ -12,28 +14,50 @@ function renderAlbums(albums) {
         })
         .join("")}
         </ul>
+        </div>
+        <div class="user-input">
+        ${Add.addAlbum()}
+    </div>
+        `;
+}
+
+function renderAlbums(albums) {
+    return `
+    <div>
+    <ul class="albums">
+    ${albums.map(album => {
+            return `
+                        <li class="album">
+                            <h5 class="album__title">${album.title}</h5>                       
+                        </li>
+                    `;
+        })
+        .join("")}
+        </ul>
+        </div>
         `;
 }
 
 function renderAlbumsAndSongs(albums, artistName) {
     return `
+    <div>
     <ul class="albums">
     ${albums.map(album => {
         return `
                 <li class="album">
                     <h5 class="album__title">${album.title}</h5>  
-                        ${Songs(album.songs, album.title, album.id)}             
+                        ${Songs.renderSongs(album.songs)}             
                 </li>
             `;
     })
     .join("")}
     </ul>
-    
+    </div>
     `;
 }
 
 export default {
-    renderAlbums, renderAlbumsAndSongs
+    renderAlbums, renderAlbumsAdd,  renderAlbumsAndSongs
 }
 
 {/* <section class="add__album">

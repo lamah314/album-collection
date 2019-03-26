@@ -9,10 +9,26 @@ main()
 function main() {
 
     api.getRequest('/artists', artists => {
-        getArtistContext().innerHTML = Artists(artists);
+        getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
     })
 
-    events.on(getArtistContext(), 'click', () => {
+    events.on(getAppContext(), 'click', () => {
+        if (event.target.classList.contains('artist__name')) {
+            api.getRequest('/artists', (artists) => {
+                getAppContext().innerHTML = Artists.renderArtists(artists);
+            })
+        }
+        if (event.target.classList.contains('album__title')) {
+            api.getRequest('/albums', (albums) => {
+                getAppContext().innerHTML = Albums.renderAlbumsAdd(albums);
+            })
+        }
+        if (event.target.classList.contains('song__title')) {
+            api.getRequest('/songs', (songs) => {
+                getAppContext().innerHTML = Songs.renderSongsAdd(songs);
+            })
+        }
+
         if (event.target.classList.contains('add__artist--submit')) {
             const name = document.querySelector('.add__artist--name').value
             const image = document.querySelector('.add__artist--image').value
@@ -21,7 +37,7 @@ function main() {
                 image: image
             }, (artists) => {
                 console.log(artists);
-                getArtistContext().innerHTML = Artists(artists);
+                getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
             })
         }
         if (event.target.classList.contains('add__album--submit')) {
@@ -35,7 +51,7 @@ function main() {
                 image: image,
                 recordLabel: recordLabel
             }, (artists) => {
-                getArtistContext().innerHTML = Artists(artists);
+                getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
             })
         }
 
@@ -50,7 +66,7 @@ function main() {
                 link: link,
                 duration: duration
             }, (artists) => {
-                getArtistContext().innerHTML = Artists(artists);
+                getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
             })
         }
 
@@ -59,6 +75,6 @@ function main() {
 }
 
 
-function getArtistContext() {
-    return document.querySelector("#artist");
+function getAppContext() {
+    return document.querySelector("#app");
 }

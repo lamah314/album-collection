@@ -1,7 +1,6 @@
 package org.wecancodeit.albumcollection.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.CollectionTable;
@@ -9,10 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,17 +22,13 @@ public class Song{
 	private String link;
 	private String duration;
 
-	@ManyToMany
-	@JoinTable(name = "song_artist", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-			@JoinColumn(name = "artist") })
+	@ManyToOne
 	@JsonIgnore
-	private Collection<Artist> artists;
+	private Artist artist;
 
-	@ManyToMany
-	@JoinTable(name = "song_album", joinColumns = { @JoinColumn(name = "song") }, inverseJoinColumns = {
-			@JoinColumn(name = "album") })
+	@ManyToOne
 	@JsonIgnore
-	private Collection<Album> albums;
+	private Album album;
 	
 	@ElementCollection
 	@CollectionTable
@@ -53,8 +45,6 @@ public class Song{
 		this.title = title;
 		this.link = link;
 		this.duration = duration;
-		this.artists = new ArrayList<Artist>();
-		this.albums = new ArrayList<Album>();
 		this.songRatings = new ArrayList<Rating>();
 		this.songComments = new ArrayList<Comment>();
 	}
@@ -75,12 +65,12 @@ public class Song{
 		return duration;
 	}
 
-	public Collection<Artist> getArtists() {
-		return artists;
+	public Artist getArtist() {
+		return artist;
 	}
 
-	public Collection<Album> getAlbums() {
-		return albums;
+	public Album getAlbum() {
+		return album;
 	}
 
 	public Collection<Rating> getSongRatings() {
@@ -92,11 +82,11 @@ public class Song{
 	}
 
 	public void addArtistToSong(Artist artist) {
-		artists.add(artist);
+		this.artist = artist;
 	}
 	
 	public void addAlbumToSong(Album album) {
-		albums.add(album);
+		this.album = album;
 	}
 	
 	public void addRatingToSong(Rating rating) {
@@ -108,11 +98,11 @@ public class Song{
 	}
 	
 	public boolean checkArtistInSong(Artist artist) {
-		return artists.contains(artist);
+		return this.artist.equals(artist);
 	}
 	
 	public boolean checkAlbumInSong(Album album) {
-		return albums.contains(album);
+		return this.album.equals(album);
 	}
 
 	public boolean checkRatingInAlbum(Rating rating) {
@@ -125,8 +115,9 @@ public class Song{
 
 	@Override
 	public String toString() {
-		return "Song [id=" + id + ", title=" + title + ", link=" + link + ", duration=" + duration + ", artists="
-				+ artists + ", albums=" + albums + "]";
+		return "Song [id=" + id + ", title=" + title + ", link=" + link + ", duration=" + duration + ", artist="
+				+ artist + ", album=" + album + ", songRatings=" + songRatings + ", songComments=" + songComments + "]";
 	}
+
 
 }

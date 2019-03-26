@@ -5,11 +5,10 @@ import java.util.Collection;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Artist{
@@ -22,10 +21,10 @@ public class Artist{
 
 	private String image;
 
-	@ManyToMany(mappedBy = "artists")
+	@OneToMany(mappedBy = "artist")
 	private Collection<Album> albums;
 
-	@ManyToMany(mappedBy = "artists")
+	@OneToMany(mappedBy = "artist")
 	private Collection<Song> songs;
 	
 	@ElementCollection

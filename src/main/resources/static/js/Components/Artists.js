@@ -21,6 +21,8 @@ export default function renderArtistsAndAlbumsAndSongs(artists) {
     </div>
     <div>
         ${Add.addArtist()}
+        ${Add.addComment()}
+
         ${Add.addAlbum()}
         
     </div>

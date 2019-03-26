@@ -1,7 +1,6 @@
 {
   "name": "album-collection",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "parcel-bundler": "^1.12.3"
@@ -20,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/lamah314/album-collection/issues"
   },
-  "homepage": "https://github.com/lamah314/album-collection#readme"
+  "homepage": "https://github.com/lamah314/album-collection#readme",
+  "description": ""
 }

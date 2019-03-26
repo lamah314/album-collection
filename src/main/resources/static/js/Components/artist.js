@@ -1,11 +1,14 @@
 import api from '../Utils/API/api-actions'
 
-export default function listArtists(artists) {
-    return (artists.map(artist => {
-            console.log(artist.id + artist.name)
-            return `   
-            <option value=${artist.id}>${artist.name}</option>    
-            `
-        })
-        .join(""))
+export default function listArtists() {
+    return `
+        ${api.getRequest('/artists', artists => {
+            artists.map(artist => {
+                return `
+                <option value=${artist.id}>${artist.name}</option>
+                `
+            })
+            .join("")
+        })}
+        `;
 }

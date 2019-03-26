@@ -54,7 +54,19 @@ function addSong() {
         `
 }
 
+function addComment() {
+    return `
+        <h3>Add Comment</h3>
+        <section class="add__comment">
+            <input type="text" class="add__comment--content" placeholder="comment">
+          
+            <button class="add__comment--submit">Add Comment</button>
+        </section> 
+        `
+}
+
+
 export default {
-    addArtist, addAlbum, addSong
+    addArtist, addAlbum, addSong, addComment
 }
   

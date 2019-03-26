@@ -38,6 +38,7 @@ function main() {
                 getArtistContext().innerHTML = Artists(artists);
             })
         }
+
         if (event.target.classList.contains('add__song--submit')) {
             const album = document.querySelector('.add__song--album').value
             const title = document.querySelector('.add__song--title').value
@@ -52,6 +53,7 @@ function main() {
                 getArtistContext().innerHTML = Artists(artists);
             })
         }
+
         console.log("checker")
     })
 }

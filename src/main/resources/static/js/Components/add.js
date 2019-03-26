@@ -1,8 +1,10 @@
+import events from '../Utils/Events/event-actions'
 import Artists from './Artists.js'
 import Albums from './Albums.js'
 import Songs from './Songs.js'
 import artist from './artist.js'
 import listArtists from './artist.js'
+import listAlbums from './album.js'
 import api from '../Utils/API/api-actions'
 
 function addArtist() {
@@ -35,25 +37,18 @@ function addAlbum() {
 }
 
 function addSong() {
-    api.getRequest('/artists', artists => {    
-        document.querySelector('.add__song--artist').innerHTML =  listArtists(artists) 
-    })
-
-    api.getRequest('/artists', artists => {    
-        document.querySelector('.add__song--artist').innerHTML =  listArtists(artists) 
+    api.getRequest('/albums', albums => {    
+        document.querySelector('.add__song--album').innerHTML =  listAlbums(albums) 
     })
 
     return `
         <h3>Add Song</h3>
         <section class="add__song">
-            <select type="select" class="add__song--artist" placeholder="Pick Artist">
-            </select>
             <select type="select" class="add__song--album" placeholder="Pick Album">
-                ${listAlbums(document.querySelector('.add__song--artist').value)}
             </select>
-            <input type="text" class="add__song--title album__id--${albumId}" placeholder="title">
-            <input type="text" class="add__song--link album__id--${albumId}" placeholder="link">
-            <input type="text" class="add__song--duration album__id--${albumId}" placeholder="duration">
+            <input type="text" class="add__song--title" placeholder="title">
+            <input type="text" class="add__song--link" placeholder="link">
+            <input type="text" class="add__song--duration" placeholder="duration">
             <button class="add__song--submit">Add Song</button>
         </section>
         `

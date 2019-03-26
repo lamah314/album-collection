@@ -46,9 +46,9 @@ public class SongController {
 	@PostMapping("/addSong")
 	public Collection<Artist> addSong(@RequestBody String body) throws JSONException{
 		JSONObject json = new JSONObject(body);
-		Artist artist = artistRepo.findById(Long.parseLong(json.getString("artist"))).get();
 		Song song = songRepo.save(new Song(json.getString("title"), json.getString("link"), json.getString("duration")));
 		Album album = albumRepo.findById(Long.parseLong(json.getString("album"))).get();
+		Artist artist = album.getArtist();
 		song.addArtistToSong(artist);
 		song.addAlbumToSong(album);
 		songRepo.save(song);

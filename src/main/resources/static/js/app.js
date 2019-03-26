@@ -39,13 +39,11 @@ function main() {
             })
         }
         if (event.target.classList.contains('add__song--submit')) {
-            const artist = document.querySelector('.add__song--artist').value
             const album = document.querySelector('.add__song--album').value
             const title = document.querySelector('.add__song--title').value
             const link = document.querySelector('.add__song--link').value
             const duration = document.querySelector('.add__song--duration').value
             api.postRequest('/songs/addSong', {
-                artist = artist,
                 album: album,
                 title: title,
                 link: link,

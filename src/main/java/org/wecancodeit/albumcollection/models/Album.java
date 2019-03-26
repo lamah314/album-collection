@@ -1,18 +1,16 @@
 package org.wecancodeit.albumcollection.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,14 +27,12 @@ public class Album{
 
 	private String recordLabel;
 
-	@ManyToMany(mappedBy = "albums")
+	@OneToMany(mappedBy = "album")
 	private Collection<Song> songs;
 
-	@ManyToMany
-	@JoinTable(name = "album_artist", joinColumns = { @JoinColumn(name = "album") }, inverseJoinColumns = {
-			@JoinColumn(name = "artist") })
+	@ManyToOne
 	@JsonIgnore
-	private Collection<Artist> artists;
+	private Artist artist;
 
 	@ElementCollection
 	@CollectionTable
@@ -58,54 +54,11 @@ public class Album{
 		this.title = title;
 		this.image = image;
 		this.recordLabel = recordLabel;
-		this.artists = new ArrayList<Artist>();
 		this.songs = new ArrayList<Song>();
 		this.albumRatings = new ArrayList<Rating>();
 		this.albumComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<Tag>();
 	}
-	
-//	public Album(String title, String image, String recordLabel, Artist...artists) {
-//		this.title = title;
-//		this.image = image;
-//		this.recordLabel = recordLabel;
-//		this.artists = Arrays.asList(artists);
-//		this.albumRatings = new ArrayList<Rating>();
-//		this.albumComments = new ArrayList<Comment>();
-//		this.tags = new ArrayList<Tag>();
-//	}
-//	
-//	public Album(String title, String image, String recordLabel, Song...songs) {
-//		this.title = title;
-//		this.image = image;
-//		this.recordLabel = recordLabel;
-//		this.songs = Arrays.asList(songs);
-//		this.albumRatings = new ArrayList<Rating>();
-//		this.albumComments = new ArrayList<Comment>();
-//		this.tags = new ArrayList<Tag>();
-//	}
-//	
-//	public Album(String title, String image, String recordLabel, Artist artist, Rating rating,
-//			Comment comment, Tag tag) {
-//		this.title = title;
-//		this.image = image;
-//		this.recordLabel = recordLabel;
-//		this.artists = Arrays.asList(artist);
-//		this.albumRatings = Arrays.asList(rating);
-//		this.albumComments = Arrays.asList(comment);
-//		this.tags = Arrays.asList(tag);
-//	}
-//	
-//	public Album(String title, String image, String recordLabel, Song song, Artist artist) {
-//		this.title = title;
-//		this.image = image;
-//		this.recordLabel = recordLabel;
-//		this.songs = Arrays.asList(song);
-//		this.artists = Arrays.asList(artist);
-//		this.albumRatings = new ArrayList<Rating>();
-//		this.albumComments = new ArrayList<Comment>();
-//		this.tags = new ArrayList<Tag>();
-//	}
 
 	public Long getId() {
 		return id;
@@ -127,14 +80,14 @@ public class Album{
 		return songs;
 	}
 	
-	public Collection<Artist> getArtists() {
-		return artists;
+	public Artist getArtist() {
+		return artist;
 	}
 	
 
 	
 	public void addArtistToAlbum(Artist artist) {
-		artists.add(artist);
+		this.artist = artist;
 	}
 	
 	public void addRatingToAlbum(Rating rating) {
@@ -154,7 +107,7 @@ public class Album{
 	}
 	
 	public boolean checkArtistInAlbum(Artist artist) {
-		return artists.contains(artist);
+		return this.artist.equals(artist);
 	}
 	
 	public boolean checkRatingInAlbum(Rating rating) {
@@ -172,8 +125,8 @@ public class Album{
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", title=" + title + ", image=" + image + ", recordLabel=" + recordLabel + ", songs="
-				+ songs + ", artists=" + artists + ", ratings=" + albumRatings + ", comments=" + albumComments + ", tags=" + tags
-				+ "]";
+				+ songs + ", artist=" + artist + ", albumRatings=" + albumRatings + ", albumComments=" + albumComments
+				+ ", tags=" + tags + "]";
 	}
 
 

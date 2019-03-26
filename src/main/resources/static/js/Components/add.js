@@ -20,7 +20,7 @@ function addAlbum() {
         <h3>Add Album</h3>
         <section class="add__album">
             <select type="select" class="add__album--artist" placeholder="Pick Artist">
-                ${listArtists()};
+                ${listArtists()}
             </select>
             <input type="text" class="add__album--title" placeholder="title">
             <input type="text" class="add__album--image" placeholder="image">
@@ -35,10 +35,10 @@ function addSong() {
         <h3>Add Song</h3>
         <section class="add__song">
             <select type="select" class="add__song--artist" placeholder="Pick Artist">
-                ${listArtists()};
+                ${listArtists()}
             </select>
             <select type="select" class="add__song--album" placeholder="Pick Album">
-                ${listAlbums(document.querySelector('.add__song--artist').value)};
+                ${listAlbums(document.querySelector('.add__song--artist').value)}
             </select>
             <input type="text" class="add__song--title album__id--${albumId}" placeholder="title">
             <input type="text" class="add__song--link album__id--${albumId}" placeholder="link">

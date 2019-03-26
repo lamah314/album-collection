@@ -8,7 +8,7 @@ export default function listArtists() {
                 <option value=${artist.id}>${artist.name}</option>
                 `
             })
-            .join("");
+            .join("")
         })}
         `;
 }

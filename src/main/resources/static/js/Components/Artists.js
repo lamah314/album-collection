@@ -18,9 +18,9 @@ export default function renderArtistsAndAlbumsAndSongs(artists) {
     .join("")}
     </ul>
     <div>
-        ${Add.addArtist()}
+       
         ${Add.addAlbum()}
-        ${Add.addSong()}
+        
     </div>
     `;
 }
@@ -30,3 +30,7 @@ export default function renderArtistsAndAlbumsAndSongs(artists) {
 <input type="text" class="add__artist--image" placeholder="image">
 <button class="add__artist--submit">Add Artist</button>
 </section> */}
+
+// ${Add.addArtist()}
+
+// ${Add.addSong()}

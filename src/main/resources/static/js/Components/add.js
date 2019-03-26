@@ -9,8 +9,9 @@ import api from '../Utils/API/api-actions'
 
 function addArtist() {
     return `
+    <section class="add__artist">
         <h3>Add Artist</h3>
-        <section class="add__artist">
+        
             <input type="select" class="add__artist--name" placeholder="artist name">
             <input type="text" class="add__artist--image" placeholder="image">
             <button class="add__artist--submit">Add Artist</button>
@@ -23,8 +24,9 @@ function addAlbum() {
         document.querySelector('.add__album--artist').innerHTML =  listArtists(artists) 
     })
     return `
+    <section class="add__album">
         <h3>Add Album</h3>
-        <section class="add__album">
+        
             <select type="select" class="add__album--artist" placeholder="Pick Artist">
             
             </select>                 
@@ -42,8 +44,9 @@ function addSong() {
     })
 
     return `
+    <section class="add__song">
         <h3>Add Song</h3>
-        <section class="add__song">
+        
             <select type="select" class="add__song--album" placeholder="Pick Album">
             </select>
             <input type="text" class="add__song--title" placeholder="title">
@@ -56,8 +59,9 @@ function addSong() {
 
 function addComment() {
     return `
+    <section class="add__comment">
         <h3>Add Comment</h3>
-        <section class="add__comment">
+        
             <input type="text" class="add__comment--content" placeholder="comment">
           
             <button class="add__comment--submit">Add Comment</button>

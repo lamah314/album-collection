@@ -20,8 +20,10 @@ function addAlbum() {
         <h3>Add Album</h3>
         <section class="add__album">
             <select type="select" class="add__album--artist" placeholder="Pick Artist">
-                ${listArtists()}
-            </select>
+            ${api.getRequest('/artists', artists => {    
+                listArtists(artists) 
+            })}
+            </select>                 
             <input type="text" class="add__album--title" placeholder="title">
             <input type="text" class="add__album--image" placeholder="image">
             <input type="text" class="add__album--recordLabel" placeholder="recordLabel">
@@ -48,6 +50,9 @@ function addSong() {
         `
 }
 
+
+
 export default {
     addArtist, addAlbum, addSong
 }
+  

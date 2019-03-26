@@ -2,7 +2,8 @@ import Artists from './Artists.js'
 import Albums from './Albums.js'
 import Songs from './Songs.js'
 import artist from './artist.js'
-import listArtists from './artist.js';
+import listArtists from './artist.js'
+import api from '../Utils/API/api-actions'
 
 function addArtist() {
     return `
@@ -16,13 +17,14 @@ function addArtist() {
 }
 
 function addAlbum() {
+    api.getRequest('/artists', artists => {    
+        document.querySelector('.add__album--artist').innerHTML =  listArtists(artists) 
+    })
     return `
         <h3>Add Album</h3>
         <section class="add__album">
             <select type="select" class="add__album--artist" placeholder="Pick Artist">
-            ${api.getRequest('/artists', artists => {    
-                listArtists(artists) 
-            })}
+            
             </select>                 
             <input type="text" class="add__album--title" placeholder="title">
             <input type="text" class="add__album--image" placeholder="image">
@@ -33,11 +35,18 @@ function addAlbum() {
 }
 
 function addSong() {
+    api.getRequest('/artists', artists => {    
+        document.querySelector('.add__song--artist').innerHTML =  listArtists(artists) 
+    })
+
+    api.getRequest('/artists', artists => {    
+        document.querySelector('.add__song--artist').innerHTML =  listArtists(artists) 
+    })
+
     return `
         <h3>Add Song</h3>
         <section class="add__song">
             <select type="select" class="add__song--artist" placeholder="Pick Artist">
-                ${listArtists()}
             </select>
             <select type="select" class="add__song--album" placeholder="Pick Album">
                 ${listAlbums(document.querySelector('.add__song--artist').value)}
@@ -49,8 +58,6 @@ function addSong() {
         </section>
         `
 }
-
-
 
 export default {
     addArtist, addAlbum, addSong

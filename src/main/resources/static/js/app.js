@@ -25,11 +25,10 @@ function main() {
             })
         }
         if (event.target.classList.contains('add__album--submit')) {
-            const artist = document.querySelector('.artist__id--artist').value
+            const artist = document.querySelector('.add__album--artist').value
             const title = document.querySelector('.add__album--title').value
             const image = document.querySelector('.add__album--image').value
             const recordLabel = document.querySelector('.add__album--recordLabel').value
-            console.log(album)
             api.postRequest('/albums/addAlbum', {
                 artist: artist,
                 title: title,
@@ -40,12 +39,13 @@ function main() {
             })
         }
         if (event.target.classList.contains('add__song--submit')) {
-            const album = document.querySelector('.album__id--album').value
+            const artist = document.querySelector('.add__song--artist').value
+            const album = document.querySelector('.add__song--album').value
             const title = document.querySelector('.add__song--title').value
             const link = document.querySelector('.add__song--link').value
             const duration = document.querySelector('.add__song--duration').value
-            console.log(album)
             api.postRequest('/songs/addSong', {
+                artist = artist,
                 album: album,
                 title: title,
                 link: link,

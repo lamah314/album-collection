@@ -43,11 +43,12 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/addAlbum")
-	public void addAlbum(@RequestBody String newAlbum) throws JSONException{
+	public Collection<Artist> addAlbum(@RequestBody String newAlbum) throws JSONException{
 		JSONObject json = new JSONObject(newAlbum);
 		Artist artist = artistRepo.findById(Long.parseLong(json.getString("artist"))).get();
 		Album album = new Album(json.getString("title"), json.getString("image"), json.getString("recordLabel"));
 		album.addArtistToAlbum(artist);
 		albumRepo.save(album);
+		return (Collection<Artist>) artistRepo.findAll();
 	}
 }

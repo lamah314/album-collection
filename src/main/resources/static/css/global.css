@@ -10,32 +10,65 @@ a {
 html {
     --primary: black;
     --secondary: white;
-    --tertiary: gray;
+    --tertiary: rgb(80, 80, 80);
     font: 20px/1.618 sans-serif;
     
 }
 body{
-    background: url('../html/img/background2.jpg');
+    color: whitesmoke;
+    background: url('../html/img/guitar.jpg');
     background-position: center;
-    background-size: 700px auto;
+    background-size: cover;
     background-repeat: no-repeat;
-    
-    background-blend-mode: lighten;
 }
 .header {
     width: 100%;
     color: var(--secondary);
     background-color: var(--primary);
-    opacity: 8;
-    right: 0;
     top: 0;
-    height: 100px;
-    font-size: 50px;
+    /* height: 100px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.figure-logo {
+    position: relative;
+    top: 5px;
+}
+
+.logo {
+    height: 70px;
+    width: auto;
+}
+
+.header-nav{
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.nav-list {
+    position:relative;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-list li {
+    border: 2px white solid;
+    padding: 0 3px;
+    margin: 0 5px ;
+}
+
+.nav-list li:hover {
+    transform: scale(1.1);
+    background-color:  var(--tertiary);
+}
+
 main {
+    padding-top: 2rem;
     min-height: 100vh;
 }
 .footer {
@@ -52,7 +85,7 @@ main {
     align-items: center;
 }
 .h1 {
-    font-size: 35px;
+    font-size: 42px;
 }
 .h2 {
     font-size: 25px;
@@ -67,8 +100,8 @@ main {
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    color: white;
-    border: blue 5px solid;
+    color: var(--secondary);
+    border: orangered 5px solid;
     position: fixed;
     bottom: 0 ;
     right: 0;
@@ -78,4 +111,5 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 5px;
 }

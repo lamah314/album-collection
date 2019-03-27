@@ -3,8 +3,38 @@ import api from './Utils/API/api-actions'
 import Artists from './Components/Artists'
 import Albums from './Components/Albums'
 import Songs from './Components/Songs'
+import Header from './Components/header'
+
 
 main()
+header()
+
+function header() {
+    getHeaderContext().innerHTML = Header()
+
+    events.on(getHeaderContext(), 'click', () => {
+        if (event.target.classList.contains('logo')) {
+            api.getRequest('/artists', (artists) => {
+                getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
+            })
+        }
+        if (event.target.classList.contains('nav-artist')) {
+            api.getRequest('/artists', (artists) => {
+                getAppContext().innerHTML = Artists.renderArtists(artists);
+            })
+        }
+        if (event.target.classList.contains('nav-album')) {
+            api.getRequest('/albums', (albums) => {
+                getAppContext().innerHTML = Albums.renderAlbumsAdd(albums);
+            })
+        }
+        if (event.target.classList.contains('nav-song')) {
+            api.getRequest('/songs', (songs) => {
+                getAppContext().innerHTML = Songs.renderSongsAdd(songs);
+            })
+        }
+    })  
+}
 
 function main() {
 
@@ -74,6 +104,9 @@ function main() {
     })
 }
 
+function getHeaderContext() {
+    return document.querySelector("#header");
+}
 
 function getAppContext() {
     return document.querySelector("#app");

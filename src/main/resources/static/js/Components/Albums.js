@@ -38,7 +38,7 @@ function renderAlbums(albums) {
         `;
 }
 
-function renderAlbumsAndSongs(albums, artistName) {
+function renderAlbumsAndSongs(albums) {
     return `
     <div>
     <ul class="albums">
@@ -55,9 +55,19 @@ function renderAlbumsAndSongs(albums, artistName) {
     </div>
     `;
 }
+function renderAlbumAndSongs(album) {
+    return `
+                    <h5 class="album__title">${album.title}</h5>  
+                        ${Songs.renderSongs(album.songs)}             
+
+            `;
+}
+
+
+
 
 export default {
-    renderAlbums, renderAlbumsAdd,  renderAlbumsAndSongs
+    renderAlbums, renderAlbumsAdd,  renderAlbumsAndSongs, renderAlbumAndSongs
 }
 
 {/* <section class="add__album">

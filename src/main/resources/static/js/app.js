@@ -6,8 +6,8 @@ import Songs from './Components/Songs'
 import Header from './Components/header'
 
 
-main()
 header()
+main()
 
 function header() {
     getHeaderContext().innerHTML = Header()
@@ -48,11 +48,16 @@ function main() {
                 getAppContext().innerHTML = Artists.renderArtists(artists);
             })
         }
-        if (event.target.classList.contains('album__title')) {
-            api.getRequest('/albums', (albums) => {
-                getAppContext().innerHTML = Albums.renderAlbumsAdd(albums);
-            })
-        }
+        // if (event.target.classList.contains('album__title')) {
+        //     const albumTitle = event.target.querySelector('.album__title').value
+        //     console.log(albumTitle)
+        //     var albumId = 0
+        //     api.postMapping('/albums/nameToId', albumTitle, (id)=> {albumId = id})
+        //     console.log(albumId)
+        //     api.getRequest('/albums/' + albumId, (album) => {
+        //         getAppContext().innerHTML = Albums.renderAlbumAndSongs(album);
+        //     })
+        // }
         if (event.target.classList.contains('song__title')) {
             api.getRequest('/songs', (songs) => {
                 getAppContext().innerHTML = Songs.renderSongsAdd(songs);

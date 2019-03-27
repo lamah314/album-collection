@@ -54,13 +54,14 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/nameToId")
-	public String convertNameToId(@RequestBody String albumTitle) {
-		Long albumId = albumRepo.findByTitle(albumTitle).getId();
-		return Long.toString(albumId);
+	public Long convertNameToId(@RequestBody String albumTitle) throws JSONException {
+		JSONObject json = new JSONObject(albumTitle);
+		Long albumId = albumRepo.findByTitle(json.getString("albumTitle")).getId();
+		return albumId;
 	}
 	
-	@GetMapping("/{albumid}")
-	public Album getAlbum(@PathVariable Long albumid) {
-		return albumRepo.findById(albumid).get();			
+	@GetMapping("/{albumId}")
+	public Album getAlbum(@PathVariable Long albumId) {
+		return albumRepo.findById(albumId).get();			
 	}
 }

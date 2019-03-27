@@ -48,16 +48,22 @@ function main() {
                 getAppContext().innerHTML = Artists.renderArtists(artists);
             })
         }
-        // if (event.target.classList.contains('album__title')) {
-        //     const albumTitle = event.target.querySelector('.album__title').value
-        //     console.log(albumTitle)
-        //     var albumId = 0
-        //     api.postMapping('/albums/nameToId', albumTitle, (id)=> {albumId = id})
-        //     console.log(albumId)
-        //     api.getRequest('/albums/' + albumId, (album) => {
-        //         getAppContext().innerHTML = Albums.renderAlbumAndSongs(album);
-        //     })
-        // }
+        if (event.target.classList.contains('album__title')) {
+            const albumTitle = event.target.parentElement.querySelector('.album__title').textContent
+            console.log(albumTitle)
+            var albumId
+            api.postRequest('/albums/nameToId', {
+                albumTitle: albumTitle
+            }, (id)=> 
+            {
+                console.log('the return id is ' +id)
+                albumId = id
+                console.log('albumID is ' + albumId)
+                api.getRequest(('/albums/' + albumId), (album) => {
+                    getAppContext().innerHTML = Albums.renderAlbumAndSongs(album);
+                })
+            })     
+        }
         if (event.target.classList.contains('song__title')) {
             api.getRequest('/songs', (songs) => {
                 getAppContext().innerHTML = Songs.renderSongsAdd(songs);
@@ -105,7 +111,6 @@ function main() {
             })
         }
 
-        console.log("checker")
     })
 }
 

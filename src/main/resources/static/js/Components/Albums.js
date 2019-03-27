@@ -45,7 +45,7 @@ function renderAlbumsAndSongs(albums) {
     ${albums.map(album => {
         return `
                 <li class="album">
-                    <h5 class="album__title">${album.title}</h5>  
+                    <h5 class="album__title" value=${album.id}>${album.title}</h5>  
                         ${Songs.renderSongs(album.songs)}             
                 </li>
             `;

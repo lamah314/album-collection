@@ -44,30 +44,43 @@ function main() {
 
     events.on(getAppContext(), 'click', () => {
         if (event.target.classList.contains('artist__name')) {
-            api.getRequest('/artists', (artists) => {
-                getAppContext().innerHTML = Artists.renderArtists(artists);
+            const artistName = event.target.parentElement.querySelector('.artist__name').textContent
+            var artistId
+            api.postRequest('/artists/nameToId', {
+                artistName: artistName
+            }, (id)=> 
+            {
+                artistId = id
+                api.getRequest(('/artists/' + artistId), (artist) => {
+                    getAppContext().innerHTML = Artists.renderArtistAndAlbumsAndSongs(artist);
+                })
             })
         }
         if (event.target.classList.contains('album__title')) {
             const albumTitle = event.target.parentElement.querySelector('.album__title').textContent
-            console.log(albumTitle)
             var albumId
             api.postRequest('/albums/nameToId', {
                 albumTitle: albumTitle
             }, (id)=> 
             {
-                console.log('the return id is ' +id)
                 albumId = id
-                console.log('albumID is ' + albumId)
                 api.getRequest(('/albums/' + albumId), (album) => {
                     getAppContext().innerHTML = Albums.renderAlbumAndSongs(album);
                 })
             })     
         }
         if (event.target.classList.contains('song__title')) {
-            api.getRequest('/songs', (songs) => {
-                getAppContext().innerHTML = Songs.renderSongsAdd(songs);
-            })
+            const songTitle = event.target.parentElement.querySelector('.song__title').textContent
+            var songId
+            api.postRequest('/songs/nameToId', {
+                songTitle: songTitle
+            }, (id)=> 
+            {
+                songId = id
+                api.getRequest(('/songs/' + songId), (song) => {
+                    getAppContext().innerHTML = Songs.renderSong(song);
+                })
+            })    
         }
 
         if (event.target.classList.contains('add__artist--submit')) {

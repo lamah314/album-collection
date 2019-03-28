@@ -14,7 +14,7 @@ function addArtist() {
         
             <input type="select" class="add__artist--name" placeholder="artist name">
             <input type="text" class="add__artist--image" placeholder="image">
-            <button class="add__artist--submit">Add Artist</button>
+            <button class="add__artist--submit clickable">Add Artist</button>
         </section> 
         `
 }
@@ -33,7 +33,7 @@ function addAlbum() {
             <input type="text" class="add__album--title" placeholder="title">
             <input type="text" class="add__album--image" placeholder="image">
             <input type="text" class="add__album--recordLabel" placeholder="recordLabel">
-            <button class="add__album--submit">Add Album</button>
+            <button class="add__album--submit clickable">Add Album</button>
         </section>
         `
 }
@@ -52,25 +52,29 @@ function addSong() {
             <input type="text" class="add__song--title" placeholder="title">
             <input type="text" class="add__song--link" placeholder="link">
             <input type="text" class="add__song--duration" placeholder="duration">
-            <button class="add__song--submit">Add Song</button>
+            <button class="add__song--submit clickable">Add Song</button>
         </section>
         `
 }
 
-function addComment() {
+function addRatingAndComment() {
     return `
-    <section class="add__comment">
-        <h3>Add Comment</h3>
-        
-            <input type="text" class="add__comment--content" placeholder="comment">
-          
-            <button class="add__comment--submit">Add Comment</button>
-        </section> 
+    <section class="add__rating__comment">
+        <h3>Add Rating and Comment</h3>
+        <select type="select" class="add__rating" placeholder="Choose Rating">
+            <option value=1>1</option> 
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option> 
+        </select>
+        <input type="text" class="add__comment--content" placeholder="comment">
+        <button class="add__comment--submit clickable">Add Comment</button>
+    </section> 
         `
 }
 
 
 export default {
-    addArtist, addAlbum, addSong, addComment
+    addArtist, addAlbum, addSong, addRatingAndComment
 }
-  

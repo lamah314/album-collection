@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA,KACI,gBAAiB,CACjB,gBAAiB,CACjB,YAAa,CACb,6BACJ","file":"main.19f1f67f.css","sourceRoot":"..\\src\\main\\resources\\static\\html","sourcesContent":["main {\r\n    padding-top: 2rem;\r\n    min-height: 100vh;\r\n    display: grid;\r\n    grid-template-columns: 1fr 3fr;\r\n}\r\n\r\n\r\n"]}

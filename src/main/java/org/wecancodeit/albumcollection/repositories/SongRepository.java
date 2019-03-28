@@ -11,6 +11,8 @@ import org.wecancodeit.albumcollection.models.Tag;
 
 @Repository
 public interface SongRepository extends CrudRepository <Song, Long>{
+
+	Song findByTitle(String string);
 	
 }
 

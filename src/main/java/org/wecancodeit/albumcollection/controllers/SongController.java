@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,18 @@ public class SongController {
 		song.addAlbumToSong(album);
 		songRepo.save(song);
 		return (Collection<Artist>) artistRepo.findAll();
+	}
+	
+	@PostMapping("/nameToId")
+	public Long convertNameToId(@RequestBody String songTitle) throws JSONException {
+		JSONObject json = new JSONObject(songTitle);
+		Long songId = songRepo.findByTitle(json.getString("songTitle")).getId();
+		return songId;
+	}
+	
+	@GetMapping("/{songId}")
+	public Song getAlbum(@PathVariable Long songId) {
+		return songRepo.findById(songId).get();			
 	}
 
 }

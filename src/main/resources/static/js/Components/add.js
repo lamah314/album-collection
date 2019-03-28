@@ -1,8 +1,3 @@
-import events from '../Utils/Events/event-actions'
-import Artists from './Artists.js'
-import Albums from './Albums.js'
-import Songs from './Songs.js'
-import artist from './artist.js'
 import listArtists from './artist.js'
 import listAlbums from './album.js'
 import api from '../Utils/API/api-actions'
@@ -34,6 +29,34 @@ function addAlbum() {
             <input type="text" class="add__album--image" placeholder="image">
             <input type="text" class="add__album--recordLabel" placeholder="recordLabel">
             <button class="add__album--submit clickable">Add Album</button>
+        </section>
+        `
+}
+
+function addAlbumSpecific(artist) {
+    return `
+    <section class="add__album">
+        <h3>Add Album</h3>
+        
+        <input type="hidden" class="add__album--artist" value="${artist.id}">
+                            
+            <input type="text" class="add__album--title" placeholder="title">
+            <input type="text" class="add__album--image" placeholder="image">
+            <input type="text" class="add__album--recordLabel" placeholder="recordLabel">
+            <button class="add__albumSpecific--submit clickable">Add Album</button>
+        </section>
+        `
+}
+
+function addSongSpecific(album) {
+    return `
+    <section class="add__song">
+            <h3>Add Song</h3>
+            <input type="hidden" class="add__song--album" value="${album.id}">
+            <input type="text" class="add__song--title" placeholder="title">
+            <input type="text" class="add__song--link" placeholder="link">
+            <input type="text" class="add__song--duration" placeholder="duration">
+            <button class="add__songSpecific--submit clickable">Add Song</button>
         </section>
         `
 }
@@ -113,5 +136,5 @@ function addRatingAndCommentArtist(artist) {
 
 
 export default {
-    addArtist, addAlbum, addSong, addRatingAndCommentSong, addRatingAndCommentAlbum, addRatingAndCommentArtist
+    addArtist, addAlbum, addSong, addRatingAndCommentSong, addRatingAndCommentAlbum, addRatingAndCommentArtist, addSongSpecific, addAlbumSpecific
 }

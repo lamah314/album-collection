@@ -134,7 +134,20 @@ function main() {
                 getAppContext().innerHTML = Albums.renderAlbumsAdd(albums);
             })
         }
-
+        if (event.target.classList.contains('add__albumSpecific--submit')) {
+            const artist = event.target.parentElement.querySelector('.add__album--artist').value
+            const title = event.target.parentElement.querySelector('.add__album--title').value
+            const image = event.target.parentElement.querySelector('.add__album--image').value
+            const recordLabel = event.target.parentElement.querySelector('.add__album--recordLabel').value
+            api.postRequest('/albums/addAlbumSpecific', {
+                artist: artist,
+                title: title,
+                image: image,
+                recordLabel: recordLabel
+            }, (artist) => {
+                getAppContext().innerHTML = Artists.renderArtistAndAlbumsAndSongs(artist);
+            })
+        }
         if (event.target.classList.contains('add__song--submit')) {
             const album = event.target.parentElement.querySelector('.add__song--album').value
             const title = event.target.parentElement.querySelector('.add__song--title').value
@@ -147,6 +160,20 @@ function main() {
                 duration: duration
             }, (songs) => {
                     getAppContext().innerHTML = Songs.renderSongsAdd(songs);
+            })
+        }
+        if (event.target.classList.contains('add__songSpecific--submit')) {
+            const album = event.target.parentElement.querySelector('.add__song--album').value
+            const title = event.target.parentElement.querySelector('.add__song--title').value
+            const link = event.target.parentElement.querySelector('.add__song--link').value
+            const duration = event.target.parentElement.querySelector('.add__song--duration').value
+            api.postRequest('/songs/addSongSpecific', {
+                album: album,
+                title: title,
+                link: link,
+                duration: duration
+            }, (album) => {
+                    getAppContext().innerHTML =  Albums.renderAlbumAndSongs(album);
             })
         }
         if (event.target.classList.contains('add__songRatingComment--submit')) {

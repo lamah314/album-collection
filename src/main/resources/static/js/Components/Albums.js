@@ -70,7 +70,7 @@ function renderAlbumAndSongs(album) {
         <h4 class="album__comments">Comments</h4>
             ${Comments.renderAlbumComments(album)} 
         <div class="user-input">
-            ${Add.addSong()}
+            ${Add.addSongSpecific(album)}
             ${Add.addRatingAndCommentAlbum(album)}
         </div>           
     `;

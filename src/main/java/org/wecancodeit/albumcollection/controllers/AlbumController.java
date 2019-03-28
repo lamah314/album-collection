@@ -56,6 +56,16 @@ public class AlbumController {
 		return (Collection<Album>) albumRepo.findAll();
 	}
 	
+	@PostMapping("/addAlbumSpecific")
+	public Artist addAlbumSpecific(@RequestBody String newAlbum) throws JSONException{
+		JSONObject json = new JSONObject(newAlbum);
+		Artist artist = artistRepo.findById(Long.parseLong(json.getString("artist"))).get();
+		Album album = new Album(json.getString("title"), json.getString("image"), json.getString("recordLabel"));
+		album.addArtistToAlbum(artist);
+		albumRepo.save(album);
+		return artist;
+	}
+	
 	@PostMapping("/nameToId")
 	public Long convertNameToId(@RequestBody String albumTitle) throws JSONException {
 		JSONObject json = new JSONObject(albumTitle);

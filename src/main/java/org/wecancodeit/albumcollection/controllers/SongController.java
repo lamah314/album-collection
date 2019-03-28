@@ -58,6 +58,19 @@ public class SongController {
 		return (Collection<Song>) songRepo.findAll();
 	}
 	
+	@PostMapping("/addSongSpecific")
+	public Album addSongSpecific(@RequestBody String body) throws JSONException{
+		JSONObject json = new JSONObject(body);
+		Song song = songRepo.save(new Song(json.getString("title"), json.getString("link"), json.getString("duration")));
+		Album album = albumRepo.findById(Long.parseLong(json.getString("album"))).get();
+		Artist artist = album.getArtist();
+		song.addArtistToSong(artist);
+		song.addAlbumToSong(album);
+		songRepo.save(song);
+		return album;
+	}
+	
+	
 	@PostMapping("/nameToId")
 	public Long convertNameToId(@RequestBody String songTitle) throws JSONException {
 		JSONObject json = new JSONObject(songTitle);

@@ -63,7 +63,7 @@ function renderArtistAndAlbumsAndSongs(artist) {
             <h4 class="artist__comments">Comments</h4>
                 ${Comments.renderArtistComments(artist)}   
         <div class="user-input">
-        ${Add.addAlbum()}
+        ${Add.addAlbumSpecific(artist)}
         ${Add.addRatingAndCommentArtist(artist)}
         </div> 
         </div>                

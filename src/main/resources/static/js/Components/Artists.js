@@ -11,7 +11,7 @@ function renderArtistsAndAlbumsAndSongs(artists) {
             ${artists.map(artist => {
             return `
                     <li class="artist">
-                        <h5 class="artist__name">${artist.name}</h5>  
+                        <h5 class="artist__name clickable">${artist.name}</h5>  
                             ${Albums.renderAlbumsAndSongs(artist.albums)}                      
                     </li>
                 `;
@@ -34,7 +34,7 @@ function renderArtists(artists) {
             ${artists.map(artist => {
             return `
                     <li class="artist">
-                        <h5 class="artist__name">${artist.name}</h5>  
+                        <h5 class="artist__name clickable">${artist.name}</h5>  
                                                 
                     </li>
                 `;
@@ -48,7 +48,14 @@ function renderArtists(artists) {
     `;
 }
 
+function renderArtistAndAlbumsAndSongs(artist) {
+    return `
+        <h2 class="artist__name">${artist.name}</h2>  
+            ${Albums.renderAlbumsHeaderAndSongs(artist.albums)}                  
+    `;
+}
+
 export default {
-    renderArtists, renderArtistsAndAlbumsAndSongs
+    renderArtists, renderArtistsAndAlbumsAndSongs, renderArtistAndAlbumsAndSongs
 }
  

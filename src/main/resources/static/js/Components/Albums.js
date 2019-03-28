@@ -1,26 +1,6 @@
 import Songs from './Songs'
 import Add from './add'
 
-function renderAlbumsAdd(albums) {
-    return `
-    <div>
-    <ul class="albums">
-    ${albums.map(album => {
-            return `
-                        <li class="album">
-                            <h5 class="album__title">${album.title}</h5>                       
-                        </li>
-                    `;
-        })
-        .join("")}
-        </ul>
-        </div>
-        <div class="user-input">
-        ${Add.addAlbum()}
-    </div>
-        `;
-}
-
 function renderAlbums(albums) {
     return `
     <div>
@@ -28,7 +8,7 @@ function renderAlbums(albums) {
     ${albums.map(album => {
             return `
                         <li class="album">
-                            <h5 class="album__title">${album.title}</h5>                       
+                            <h5 class="album__title clickable">${album.title}</h5>                       
                         </li>
                     `;
         })
@@ -38,14 +18,23 @@ function renderAlbums(albums) {
         `;
 }
 
-function renderAlbumsAndSongs(albums, artistName) {
+function renderAlbumsAdd(albums) {
+    return `
+        ${renderAlbums(albums)}
+        <div class="user-input">
+        ${Add.addAlbum()}
+    </div>
+        `;
+}
+
+function renderAlbumsAndSongs(albums) {
     return `
     <div>
     <ul class="albums">
     ${albums.map(album => {
         return `
                 <li class="album">
-                    <h5 class="album__title">${album.title}</h5>  
+                    <h5 class="album__title clickable" value=${album.id}>${album.title}</h5>  
                         ${Songs.renderSongs(album.songs)}             
                 </li>
             `;
@@ -56,8 +45,24 @@ function renderAlbumsAndSongs(albums, artistName) {
     `;
 }
 
+function renderAlbumsHeaderAndSongs(albums) {
+    return `
+        <h4 class="Album__header">Albums</h4>
+        ${this.renderAlbumsAndSongs(albums)}
+    `
+}
+function renderAlbumAndSongs(album) {
+    return `
+        <h2 class="album__title">${album.title}</h2>  
+            ${Songs.renderSongsHeader(album.songs)}             
+    `;
+}
+
+
+
+
 export default {
-    renderAlbums, renderAlbumsAdd,  renderAlbumsAndSongs
+    renderAlbums, renderAlbumsAdd,  renderAlbumsAndSongs, renderAlbumAndSongs, renderAlbumsHeaderAndSongs
 }
 
 {/* <section class="add__album">

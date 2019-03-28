@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.albumcollection.models.Album;
 import org.wecancodeit.albumcollection.models.Artist;
 import org.wecancodeit.albumcollection.models.Comment;
 import org.wecancodeit.albumcollection.repositories.AlbumRepository;
@@ -49,11 +50,6 @@ public class ArtistController {
 		return artistRepo.findById(artistId).get();
 	}
 	
-//	@GetMapping("/addArtist")
-//	public ArtistRepository getArtistRepo() {
-//		return artistRepo;
-//	}
-	
 	@PostMapping("/addArtist")
 	public Collection<Artist> addArtist(@RequestBody String newArtist) throws JSONException{
 		JSONObject json = new JSONObject(newArtist);
@@ -68,5 +64,12 @@ public class ArtistController {
 //		artistRepo.save(new Comment(json.getString("comments")));
 //		return (Collection<Comment>) artistRepo.findAll();
 //	}
-		
+	
+	@PostMapping("/nameToId")
+	public Long convertNameToId(@RequestBody String artistName) throws JSONException {
+		JSONObject json = new JSONObject(artistName);
+		Long artistId = artistRepo.findByName(json.getString("artistName")).getId();
+		return artistId;
+	}
+	
 }

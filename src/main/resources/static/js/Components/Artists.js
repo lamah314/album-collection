@@ -10,10 +10,13 @@ function renderArtistsAndAlbumsAndSongs(artists) {
         <ul class="artists">
             ${artists.map(artist => {
             return `
+                     <img src="${artist.image}" />
                     <li class="artist">
                         <h5 class="artist__name clickable">${artist.name}</h5>  
+                        
                             ${Albums.renderAlbumsAndSongs(artist.albums)}                      
                     </li>
+                   
                 `;
         })
         .join("")}

@@ -39,22 +39,23 @@ public class Populator implements CommandLineRunner {
 
 		Tag tag1 = tagRepo.save(new Tag("Cool"));
 
+		
 		Artist artist1 = artistRepo.save(new Artist("Nirvana", "https://upload.wikimedia.org/wikipedia/en/3/36/With_the_lights_out_nirvana.jpg"));
-		Album album1 = albumRepo.save(new Album("Nevermind", "https://upload.wikimedia.org/wikipedia/en/9/94/Sublime_Self-Titled.jpg", "DGC"));
-		Song song1 = songRepo.save(new Song("Lithium", "https://www.youtube.com/watch?v=pkcJEvMcnEg", "4:16"));
-		Song song2 = songRepo.save(new Song("Heart Shaped Box", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
+		Album album1 = albumRepo.save(new Album("Nevermind", "https://img.discogs.com/hzodGGZSp9P67i0X4uN_oGXwXXk=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-3756184-1343119519-1245.jpeg.jpg", "DGC"));
+		Song song1 = songRepo.save(new Song("Lithium", "https://www.youtube.com/embed/Tvc4JmWI4Ko", "4:16"));
+		Song song2 = songRepo.save(new Song("Heart Shaped Box", "https://www.youtube.com/embed/n6P0SitRwy8", "4:45"));
 		
 		Album album11 = albumRepo.save(new Album("In Utero", "https://upload.wikimedia.org/wikipedia/en/e/e5/In_Utero_%28Nirvana%29_album_cover.jpg", "DGC"));
-		Song song11 = songRepo.save(new Song("All Apologies", "https://www.youtube.com/watch?v=n6P0SitRwy8", "4:45"));
+		Song song11 = songRepo.save(new Song("All Apologies", "https://www.youtube.com/embed/n6P0SitRwy8", "4:45"));
 		Artist artist2 = artistRepo.save(new Artist("Nine Inch Nails", "http://media.cleveland.com/pdextra/photo/9482895-large.jpg"));
-		Album album2 = albumRepo.save(new Album("Pretty Hate Machine", "albumPrettyHateMachine.img", "TVT"));
-		Song song3 = songRepo.save(new Song("Down In It", "https://www.youtube.com/watch?v=NkphW38WyYo", "4:37"));
-		Song song4 = songRepo.save(new Song("Head Like A Hole", "https://www.youtube.com/watch?v=nOVW938sr0k", "5:00"));
+		Album album2 = albumRepo.save(new Album("Pretty Hate Machine", "https://upload.wikimedia.org/wikipedia/en/f/f1/Nine_Inch_Nails_-_Pretty_Hate_Machine.png", "TVT"));
+		Song song3 = songRepo.save(new Song("Down In It", "https://www.youtube.com/embed/NkphW38WyYo", "4:37"));
+		Song song4 = songRepo.save(new Song("Head Like A Hole", "https://www.youtube.com/embed/nOVW938sr0k", "5:00"));
 
 		Artist artist3 = artistRepo.save(new Artist("Sublime", "https://upload.wikimedia.org/wikipedia/en/a/a0/Bud_Gaugh%2C_Eric_Wilson%2C_and_Brad_Nowell_of_Sublime_%281996%29.jpg"));
 		Album album3 = albumRepo.save(new Album("Sublime", "https://upload.wikimedia.org/wikipedia/en/9/94/Sublime_Self-Titled.jpg", "MCA"));
-		Song song5 = songRepo.save(new Song("Santeria", "https://www.youtube.com/watch?v=k3ZeUL4fRyko", "3:04"));
-		Song song6 = songRepo.save(new Song("What I got", "https://www.youtube.com/watch?v=0Uc3ZrmhDN4", "2:53"));
+		Song song5 = songRepo.save(new Song("Santeria", "https://www.youtube.com/embed/k3ZeUL4fRyk", "3:04"));
+		Song song6 = songRepo.save(new Song("What I got", "https://www.youtube.com/embed/0Uc3ZrmhDN4", "2:53"));
 
 		album1.addArtistToAlbum(artist1);
 		album1.addRatingToAlbum(rating1);

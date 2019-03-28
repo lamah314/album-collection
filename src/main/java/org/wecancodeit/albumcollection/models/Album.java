@@ -38,6 +38,8 @@ public class Album{
 	@CollectionTable
 	private Collection<Rating> albumRatings;
 
+	private int avgRating;
+	
 	@ElementCollection
 	@CollectionTable
 	private Collection<Comment> albumComments;
@@ -58,6 +60,7 @@ public class Album{
 		this.albumRatings = new ArrayList<Rating>();
 		this.albumComments = new ArrayList<Comment>();
 		this.tags = new ArrayList<Tag>();
+		calculateAvgRating();
 	}
 
 	public Long getId() {
@@ -82,6 +85,18 @@ public class Album{
 	
 	public Artist getArtist() {
 		return artist;
+	}
+	
+	public Collection<Rating> getAlbumRatings() {
+		return albumRatings;
+	}
+	
+	public int getAvgRating() {
+		return avgRating;
+	}
+
+	public Collection<Comment> getAlbumComments() {
+		return albumComments;
 	}
 	
 
@@ -122,12 +137,16 @@ public class Album{
 		return tags.contains(tag);
 	}
 
-	@Override
-	public String toString() {
-		return "Album [id=" + id + ", title=" + title + ", image=" + image + ", recordLabel=" + recordLabel + ", songs="
-				+ songs + ", artist=" + artist + ", albumRatings=" + albumRatings + ", albumComments=" + albumComments
-				+ ", tags=" + tags + "]";
+	public void calculateAvgRating() {
+		int count=0;
+		int sum =0;
+		for (Rating rating : albumRatings) {
+			sum += rating.getRating();
+			count++;
+		}
+		if (count > 0) {
+			avgRating = sum/count;
+		}
 	}
-
-
+	
 }

@@ -30,6 +30,8 @@ public class Artist{
 	@ElementCollection
 	@CollectionTable
 	private Collection<Rating> artistRatings;
+	
+	private int avgRating;
 
 	@ElementCollection
 	@CollectionTable
@@ -58,6 +60,10 @@ public class Artist{
 	public Collection<Rating> getArtistRatings() {
 		return artistRatings;
 	}
+	
+	public int getAvgRating() {
+		return avgRating;
+	}
 
 	public Collection<Comment> getArtistComments() {
 		return artistComments;
@@ -73,12 +79,18 @@ public class Artist{
 		this.songs = new ArrayList<Song>();
 		this.artistRatings = new ArrayList<Rating>();
 		this.artistComments = new ArrayList<Comment>();
+		calculateAvgRating();
 	}
 
 	public void addAlbumToArtist(Album album) {
 		albums.add(album);
 	}
 
+	public void addRatingToAlbum(Rating rating) {
+		artistRatings.add(rating);
+		calculateAvgRating();
+	}
+	
 	public void addCommentToAlbum(Comment comment) {
 		artistComments.add(comment);
 	}
@@ -91,10 +103,16 @@ public class Artist{
 		return artistComments.contains(comment);
 	}
 	
-	@Override
-	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", image=" + image + ", albums=" + albums
-				+ ", songs=" + songs + "]";
+	public void calculateAvgRating() {
+		int count=0;
+		int sum =0;
+		for (Rating rating : artistRatings) {
+			sum += rating.getRating();
+			count++;
+		}
+		if (count > 0) {
+			avgRating = sum/count;
+		}
 	}
 
 }

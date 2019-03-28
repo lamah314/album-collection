@@ -15,7 +15,7 @@ function header() {
     events.on(getHeaderContext(), 'click', () => {
         if (event.target.classList.contains('logo')) {
             api.getRequest('/artists', (artists) => {
-                getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
+                getAppContext().innerHTML = LandingPage();
             })
         }
         if (event.target.classList.contains('nav-artist')) {
@@ -56,7 +56,33 @@ function main() {
                 })
             })
         }
+        if (event.target.classList.contains('artist__image')) {
+            const artistName = event.target.parentElement.querySelector('.artist__name').textContent
+            var artistId
+            api.postRequest('/artists/nameToId', {
+                artistName: artistName
+            }, (id)=> 
+            {
+                artistId = id
+                api.getRequest(('/artists/' + artistId), (artist) => {
+                    getAppContext().innerHTML = Artists.renderArtistAndAlbumsAndSongs(artist);
+                })
+            })
+        }
         if (event.target.classList.contains('album__title')) {
+            const albumTitle = event.target.parentElement.querySelector('.album__title').textContent
+            var albumId
+            api.postRequest('/albums/nameToId', {
+                albumTitle: albumTitle
+            }, (id)=> 
+            {
+                albumId = id
+                api.getRequest(('/albums/' + albumId), (album) => {
+                    getAppContext().innerHTML = Albums.renderAlbumAndSongs(album);
+                })
+            })     
+        }
+        if (event.target.classList.contains('album__image')) {
             const albumTitle = event.target.parentElement.querySelector('.album__title').textContent
             var albumId
             api.postRequest('/albums/nameToId', {

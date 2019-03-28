@@ -40,6 +40,7 @@
 }
 
 .nav-list li:hover {
-    transform: scale(1.1);
-    background-color:  var(--tertiary);
+    transform: scale(1.2);
+    background-color:  orangered;
+
 }

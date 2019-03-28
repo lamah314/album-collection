@@ -41,7 +41,7 @@ function renderArtists(artists) {
                         <h5 class="artist__name clickable">${artist.name}</h5>  
                                                 
                     </li>
-                    <img src="${artist.image}" />
+                    <img class="artist__image" src="${artist.image}" />
                 `;
         })
         .join("")}

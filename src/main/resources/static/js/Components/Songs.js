@@ -37,7 +37,7 @@ function renderSong(song) {
     return `
         <h2 class="song__title">${song.title}</h2>  
         <div class="user-input">
-        ${Add.addRatingAndComment()}    
+            ${Add.addRatingAndComment()}    
         </div>               
     `;
 }

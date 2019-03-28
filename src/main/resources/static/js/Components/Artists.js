@@ -64,6 +64,7 @@ function renderArtistAndAlbumsAndSongs(artist) {
                 ${Comments.renderArtistComments(artist)}   
         <div class="user-input">
         ${Add.addAlbum()}
+        ${Add.addRatingAndCommentArtist(artist)}
         </div> 
         </div>                
     `;

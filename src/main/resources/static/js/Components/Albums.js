@@ -71,6 +71,7 @@ function renderAlbumAndSongs(album) {
             ${Comments.renderAlbumComments(album)} 
         <div class="user-input">
             ${Add.addSong()}
+            ${Add.addRatingAndCommentAlbum(album)}
         </div>           
     `;
 }

@@ -57,10 +57,11 @@ function addSong() {
         `
 }
 
-function addRatingAndComment() {
+function addRatingAndCommentSong(song) {
     return `
     <section class="add__rating__comment">
-        <h3>Add Rating and Comment</h3>
+        <h3>Add Rating and Comment to ${song.title}</h3>
+        <input type="hidden" class="add__songId" value="${song.id}">
         <select type="select" class="add__rating" placeholder="Choose Rating">
             <option value=1>1</option> 
             <option value=2>2</option>
@@ -69,12 +70,48 @@ function addRatingAndComment() {
             <option value=5>5</option> 
         </select>
         <input type="text" class="add__comment--content" placeholder="comment">
-        <button class="add__comment--submit clickable">Add Comment</button>
+        <button class="add__songRatingComment--submit clickable">Add Comment</button>
+    </section> 
+        `
+}
+
+function addRatingAndCommentAlbum(album) {
+    return `
+    <section class="add__rating__comment">
+        <h3>Add Rating and Comment to ${album.title}</h3>
+        <input type="hidden" class="add__albumId" value="${album.id}">
+        <select type="select" class="add__rating" placeholder="Choose Rating">
+            <option value=1>1</option> 
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option> 
+        </select>
+        <input type="text" class="add__comment--content" placeholder="comment">
+        <button class="add__albumRatingComment--submit clickable">Add Comment</button>
+    </section> 
+        `
+}
+
+function addRatingAndCommentArtist(artist) {
+    return `
+    <section class="add__rating__comment">
+        <h3>Add Rating and Comment to ${artist.name}</h3>
+        <input type="hidden" class="add__artistId" value="${artist.id}">
+        <select type="select" class="add__rating" placeholder="Choose Rating">
+            <option value=1>1</option> 
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option> 
+        </select>
+        <input type="text" class="add__comment--content" placeholder="comment">
+        <button class="add__artistRatingComment--submit clickable">Add Comment</button>
     </section> 
         `
 }
 
 
 export default {
-    addArtist, addAlbum, addSong, addRatingAndComment
+    addArtist, addAlbum, addSong, addRatingAndCommentSong, addRatingAndCommentAlbum, addRatingAndCommentArtist
 }

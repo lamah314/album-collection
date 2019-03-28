@@ -38,7 +38,7 @@ public class Album{
 	@CollectionTable
 	private Collection<Rating> albumRatings;
 
-	private int avgRating;
+	private double avgRating;
 	
 	@ElementCollection
 	@CollectionTable
@@ -91,7 +91,7 @@ public class Album{
 		return albumRatings;
 	}
 	
-	public int getAvgRating() {
+	public double getAvgRating() {
 		return avgRating;
 	}
 
@@ -107,6 +107,7 @@ public class Album{
 	
 	public void addRatingToAlbum(Rating rating) {
 		albumRatings.add(rating);
+		calculateAvgRating();
 	}
 
 	public void addCommentToAlbum(Comment comment) {
@@ -138,8 +139,8 @@ public class Album{
 	}
 
 	public void calculateAvgRating() {
-		int count=0;
-		int sum =0;
+		double count=0;
+		double sum =0;
 		for (Rating rating : albumRatings) {
 			sum += rating.getRating();
 			count++;

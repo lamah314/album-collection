@@ -36,10 +36,12 @@ function renderArtists(artists) {
         <ul class="artists">
             ${artists.map(artist => {
             return `
+            
                     <li class="artist">
                         <h5 class="artist__name clickable">${artist.name}</h5>  
                                                 
                     </li>
+                    <img src="${artist.image}" />
                 `;
         })
         .join("")}
@@ -52,8 +54,9 @@ function renderArtists(artists) {
 }
 
 function renderArtistAndAlbumsAndSongs(artist) {
-    return `
-        <h2 class="artist__name">${artist.name}</h2>  
+    return `      
+        <h2 class="artist__name">${artist.name}</h2> 
+        <img src="${artist.image}" /> 
             ${Albums.renderAlbumsHeaderAndSongs(artist.albums)}                  
     `;
 }

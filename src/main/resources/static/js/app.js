@@ -4,7 +4,7 @@ import Artists from './Components/Artists'
 import Albums from './Components/Albums'
 import Songs from './Components/Songs'
 import Header from './Components/header'
-
+import LandingPage from './Components/landingPage'
 
 header()
 main()
@@ -39,7 +39,7 @@ function header() {
 function main() {
 
     api.getRequest('/artists', artists => {
-        getAppContext().innerHTML = Artists.renderArtistsAndAlbumsAndSongs(artists);
+        getAppContext().innerHTML = LandingPage();
     })
 
     events.on(getAppContext(), 'click', () => {

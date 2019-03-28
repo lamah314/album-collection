@@ -7,9 +7,11 @@ function renderAlbums(albums) {
     <ul class="albums">
     ${albums.map(album => {
             return `
+
                         <li class="album">
                             <h5 class="album__title clickable">${album.title}</h5>                       
                         </li>
+                        <img src="${album.image}" /> 
                     `;
         })
         .join("")}
@@ -33,8 +35,10 @@ function renderAlbumsAndSongs(albums) {
     <ul class="albums">
     ${albums.map(album => {
         return `
+        <h5 class="album__title clickable" value=${album.id}>${album.title}</h5>  
+        <img src="${album.image}" /> 
                 <li class="album">
-                    <h5 class="album__title clickable" value=${album.id}>${album.title}</h5>  
+                    
                         ${Songs.renderSongs(album.songs)}             
                 </li>
             `;
@@ -53,7 +57,8 @@ function renderAlbumsHeaderAndSongs(albums) {
 }
 function renderAlbumAndSongs(album) {
     return `
-        <h2 class="album__title">${album.title}</h2>  
+        <h2 class="album__title">${album.title}</h2> 
+        <img src="${album.image}" />  
             ${Songs.renderSongsHeader(album.songs)}             
     `;
 }

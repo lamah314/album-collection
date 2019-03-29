@@ -1,7 +1,7 @@
 import Add from './add'
 import Songs from './Songs'
 import Albums from './Albums'
-
+import Comments from './comments'
 
 
 function renderArtistsAndAlbumsAndSongs(artists) {
@@ -10,7 +10,7 @@ function renderArtistsAndAlbumsAndSongs(artists) {
         <ul class="artists">
             ${artists.map(artist => {
             return `
-                     <img src="${artist.image}" />
+                    <img class= "artist__image clickable" src="${artist.image}" />
                     <li class="artist">
                         <h5 class="artist__name clickable">${artist.name}</h5>  
                         
@@ -39,9 +39,9 @@ function renderArtists(artists) {
             
                     <li class="artist">
                         <h5 class="artist__name clickable">${artist.name}</h5>  
-                                                
+                        <img class="artist__image clickable"src="${artist.image}" />
                     </li>
-                    <img src="${artist.image}" />
+
                 `;
         })
         .join("")}
@@ -54,12 +54,23 @@ function renderArtists(artists) {
 }
 
 function renderArtistAndAlbumsAndSongs(artist) {
-    return `      
+    return `  
+        <div>    
         <h2 class="artist__name">${artist.name}</h2> 
-        <img src="${artist.image}" /> 
-            ${Albums.renderAlbumsHeaderAndSongs(artist.albums)}                  
+        <img class= "artist__image" src="${artist.image}" /> 
+            ${Albums.renderAlbumsHeaderAndSongs(artist.albums)}  
+            <h4 class="artist__rating">Average Rating: ${artist.avgRating}</h4>
+            <h4 class="artist__comments">Comments</h4>
+                ${Comments.renderArtistComments(artist)}   
+        <div class="user-input">
+        ${Add.addAlbumSpecific(artist)}
+        ${Add.addRatingAndCommentArtist(artist)}
+        </div> 
+        </div>                
     `;
 }
+
+
 
 export default {
     renderArtists, renderArtistsAndAlbumsAndSongs, renderArtistAndAlbumsAndSongs

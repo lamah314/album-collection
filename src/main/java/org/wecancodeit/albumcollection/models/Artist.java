@@ -30,6 +30,8 @@ public class Artist{
 	@ElementCollection
 	@CollectionTable
 	private Collection<Rating> artistRatings;
+	
+	private double avgRating;
 
 	@ElementCollection
 	@CollectionTable
@@ -58,6 +60,10 @@ public class Artist{
 	public Collection<Rating> getArtistRatings() {
 		return artistRatings;
 	}
+	
+	public double getAvgRating() {
+		return avgRating;
+	}
 
 	public Collection<Comment> getArtistComments() {
 		return artistComments;
@@ -73,28 +79,40 @@ public class Artist{
 		this.songs = new ArrayList<Song>();
 		this.artistRatings = new ArrayList<Rating>();
 		this.artistComments = new ArrayList<Comment>();
+		calculateAvgRating();
 	}
 
 	public void addAlbumToArtist(Album album) {
 		albums.add(album);
 	}
-	//Should this be  to Artist not album???
-	public void addCommentToAlbum(Comment comment) {
+
+  public void addRatingToArtist(Rating rating) {
+		artistRatings.add(rating);
+		calculateAvgRating();
+	}
+	
+	public void addCommentToArtist(Comment comment) {
 		artistComments.add(comment);
 	}
 	
 	public boolean checkAlbumInArtist(Album album) {
 		return albums.contains(album);
 	}
-	//Should this be changed to Artist
-	public boolean checkCommentInAlbum(Comment comment) {
+	
+	public boolean checkCommentInArtist(Comment comment) {
 		return artistComments.contains(comment);
 	}
 	
-	@Override
-	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", image=" + image + ", albums=" + albums
-				+ ", songs=" + songs + "]";
+	public void calculateAvgRating() {
+		double count=0;
+		double sum =0;
+		for (Rating rating : artistRatings) {
+			sum += rating.getRating();
+			count++;
+		}
+		if (count > 0) {
+			avgRating = sum/count;
+		}
 	}
 
 }

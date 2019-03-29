@@ -1,0 +1,24 @@
+main {
+    padding-top: 2rem;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.artist__image {
+    height: 168px;
+    width: 300px;
+
+}
+
+.landingVideo-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95%;
+    
+}
+
+
+

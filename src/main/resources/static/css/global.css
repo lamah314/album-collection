@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    /* padding: 0; */
+} 
+/*
+a {
+    text-decoration: none;
+} */
+html {
+    --primary: black;
+    --secondary: white;
+    --tertiary: rgb(80, 80, 80);
+    font: 20px/1.618 sans-serif;
+    
+}
+body{
+    color: whitesmoke;
+    background: url('../html/img/guitar.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#app {
+    width: minmax(300px, 50wh);
+}
+
+.clickable:hover {
+    cursor: url(../html/img/flaming.gif) 32 30, auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+.h1 {
+    font-size: 42px;
+}
+
+
+

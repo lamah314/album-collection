@@ -86,7 +86,7 @@ public class Artist{
 		albums.add(album);
 	}
 
-	public void addRatingToArtist(Rating rating) {
+  public void addRatingToArtist(Rating rating) {
 		artistRatings.add(rating);
 		calculateAvgRating();
 	}

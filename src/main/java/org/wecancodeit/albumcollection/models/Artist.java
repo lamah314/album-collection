@@ -78,7 +78,7 @@ public class Artist{
 	public void addAlbumToArtist(Album album) {
 		albums.add(album);
 	}
-
+	//Should this be  to Artist not album???
 	public void addCommentToAlbum(Comment comment) {
 		artistComments.add(comment);
 	}
@@ -86,7 +86,7 @@ public class Artist{
 	public boolean checkAlbumInArtist(Album album) {
 		return albums.contains(album);
 	}
-	
+	//Should this be changed to Artist
 	public boolean checkCommentInAlbum(Comment comment) {
 		return artistComments.contains(comment);
 	}

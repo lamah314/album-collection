@@ -5,9 +5,11 @@ import Albums from './Components/Albums'
 import Songs from './Components/Songs'
 import Header from './Components/header'
 import LandingPage from './Components/landingPage'
+import Footer from './Components/footer'
 
 header()
 main()
+footer()
 
 function header() {
     getHeaderContext().innerHTML = Header()
@@ -214,6 +216,9 @@ function main() {
         }
     })
 }
+function footer() {
+    getFooterContext().innerHTML = Footer()
+}
 
 function getHeaderContext() {
     return document.querySelector("#header");
@@ -221,4 +226,8 @@ function getHeaderContext() {
 
 function getAppContext() {
     return document.querySelector("#app");
+}
+
+function getFooterContext() {
+    return document.querySelector("#footer");
 }

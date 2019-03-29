@@ -10,9 +10,7 @@ public class CommentTest {
 	@Test
 	public void testComment() {
 		Comment comment = new Comment("content");
-		assertEquals("content", comment.getCommentContent());
-		
-		
+		assertEquals("content", comment.getCommentContent());	
 	}
 
 }

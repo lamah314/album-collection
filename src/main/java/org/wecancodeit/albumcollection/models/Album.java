@@ -98,9 +98,7 @@ public class Album{
 	public Collection<Comment> getAlbumComments() {
 		return albumComments;
 	}
-	
 
-	
 	public void addArtistToAlbum(Artist artist) {
 		this.artist = artist;
 	}

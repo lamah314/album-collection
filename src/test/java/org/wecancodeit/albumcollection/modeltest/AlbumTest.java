@@ -2,19 +2,16 @@ package org.wecancodeit.albumcollection.modeltest;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 import org.junit.Test;
 import org.wecancodeit.albumcollection.models.Album;
 import org.wecancodeit.albumcollection.models.Artist;
 import org.wecancodeit.albumcollection.models.Comment;
 import org.wecancodeit.albumcollection.models.Rating;
-import org.wecancodeit.albumcollection.models.Song;
 import org.wecancodeit.albumcollection.models.Tag;
 
 public class AlbumTest {
-	
+
 	@Test
 	public void testAlbumGetters() {
 		Album album = new Album("title", "image", "recordLabel");
@@ -22,7 +19,7 @@ public class AlbumTest {
 		assertEquals("image", album.getImage());
 		assertEquals("recordLabel", album.getRecordLabel());
 	}
-	
+
 	@Test
 	public void testArtist() {
 		Album album = new Album("title", "image", "recordLabel");
@@ -31,7 +28,7 @@ public class AlbumTest {
 		assertEquals(artist, album.getArtist());
 		assertEquals(true, album.checkArtistInAlbum(artist));
 	}
-	
+
 	@Test
 	public void testRating() {
 		Album album = new Album("title", "image", "recordLabel");
@@ -39,15 +36,16 @@ public class AlbumTest {
 		album.addRatingToAlbum(rating);
 		assertEquals(true, album.checkRatingInAlbum(rating));
 	}
-	
-	@Test 
+
+	@Test
 	public void testComments() {
 		Album album = new Album("title", "image", "recordLabel");
 		Comment comment = new Comment("new comment");
 		album.addCommentToAlbum(comment);
 		assertEquals(true, album.checkCommentInAlbum(comment));
 	}
-	@Test 
+
+	@Test
 	public void testTags() {
 		Album album = new Album("title", "image", "recordLabel");
 		Tag tag = new Tag("tag");
@@ -55,22 +53,15 @@ public class AlbumTest {
 		assertEquals(true, album.checkTagInAlbum(tag));
 	}
 
-	
-//	@Test 
-//	public void testSongs() {
-//		Album album = new Album("title", "image", "recordLabel");
-//		Song song = new Song("title", "link", "duration");
-//		Collection<Song> songList = new ArrayList<Song>();
-//		songList.add(song);
-//		song.addAlbumToSong(album);
-//		assertEquals(true, album.checkSongInAlbum(song));
-//	}
-//	
-	
-	
-	
-
-	
-
+	@Test
+	public void testCalculateRatings() {
+		Album album = new Album("title", "image", "recordLabel");
+		Rating rating = new Rating(5);
+		Rating rating2 = new Rating(2);
+		album.addRatingToAlbum(rating2);
+		album.addRatingToAlbum(rating);
+		album.calculateAvgRating();
+		assertEquals(3.5, album.getAvgRating(), 0.000001);
+	}
 
 }

@@ -25,41 +25,23 @@ public class ArtistTest {
 		artist.addAlbumToArtist(album);
 		assertEquals(true, artist.checkAlbumInArtist(album));
 	}
-//	
-//	@Test
-//	public void testRating() {
-//		Album album = new Album("title", "image", "recordLabel");
-//		Rating rating = new Rating(1);
-//		album.addRatingToAlbum(rating);
-//		assertEquals(true, album.checkRatingInAlbum(rating));
-//	}
-//	
-//	@Test 
-//	public void testComments() {
-//		Album album = new Album("title", "image", "recordLabel");
-//		Comment comment = new Comment("new comment");
-//		album.addCommentToAlbum(comment);
-//		assertEquals(true, album.checkCommentInAlbum(comment));
-//	}
-//	@Test 
-//	public void testTags() {
-//		Album album = new Album("title", "image", "recordLabel");
-//		Tag tag = new Tag("tag");
-//		album.addTagToAlbum(tag);
-//		assertEquals(true, album.checkTagInAlbum(tag));
-//	}
-//
-//	
-////	@Test 
-////	public void testSongs() {
-////		Album album = new Album("title", "image", "recordLabel");
-////		Song song = new Song("title", "link", "duration");
-////		Collection<Song> songList = new ArrayList<Song>();
-////		songList.add(song);
-////		song.addAlbumToSong(album);
-////		assertEquals(true, album.checkSongInAlbum(song));
-////	}
-////	
-//	
+	
+	@Test 
+	public void testComments() {
+		Artist artist = new Artist("name", "image");
+		Comment comment = new Comment("new comment");
+		artist.addCommentToArtist(comment);
+		assertEquals(true, artist.checkCommentInArtist(comment));
+	}
+	@Test
+	public void testCalculateRatings() {
+		Artist artist = new Artist("name", "image");
+		Rating rating = new Rating(5);
+		Rating rating2 = new Rating(2);
+		artist.addRatingToArtist(rating2);
+		artist.addRatingToArtist(rating);
+		artist.calculateAvgRating();
+		assertEquals(3.5, artist.getAvgRating(), 0.000001);
+	}
 
 }

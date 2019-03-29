@@ -33,14 +33,15 @@ public class SongTest {
 		assertEquals(album, song.getAlbum());
 		assertEquals(true, song.checkAlbumInSong(album));
 	}
-//	@Test
-//	public void testRating() {
-//		Song song = new Song("title", "link", "duration");
-//		Rating rating = new Rating(3);
-//		song.addRatingToSong(rating);
-//		assertEquals(3, song.getSongRatings());
-//		assertEquals(true, song.checkRatingInSong(rating));
-//	}
-	
+	@Test
+	public void testCalculateRatings() {
+		Song song = new Song("title", "link", "duration");
+		Rating rating = new Rating(5);
+		Rating rating2 = new Rating(2);
+		song.addRatingToSong(rating2);
+		song.addRatingToSong(rating);
+		song.calculateAvgRating();
+		assertEquals(3.5, song.getAvgRating(), 0.000001);
+	}
 
 }

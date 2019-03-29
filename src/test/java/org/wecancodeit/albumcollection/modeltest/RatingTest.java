@@ -11,9 +11,7 @@ public class RatingTest {
 	@Test
 	public void testRating() {
 		Rating rating = new Rating(2);
-		assertEquals(2, rating.getRating());
-		
-		
+		assertEquals(2, rating.getRating());	
 	}
 
 }
